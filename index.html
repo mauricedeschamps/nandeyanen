@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1a73e8">
+    <title>Nandeyanen Guest House | Okinawa</title>
+    <link rel="manifest" href="data:application/manifest+json,{}">
+    <link rel="icon" href="https://via.placeholder.com/192x192/1a73e8/ffffff?text=N" sizes="192x192">
+    <link rel="apple-touch-icon" href="https://via.placeholder.com/192x192/1a73e8/ffffff?text=N">
+    <style>
+        :root {
+            --bg-color: #121212;
+            --text-color: #e0e0e0;
+            --primary-color: #1a73e8;
+            --secondary-color: #0d47a1;
+            --card-bg: #1e1e1e;
+            --border-color: #333;
+        }
+        
+        [data-theme="light"] {
+            --bg-color: #ffffff;
+            --text-color: #333333;
+            --primary-color: #1a73e8;
+            --secondary-color: #0d47a1;
+            --card-bg: #f5f5f5;
+            --border-color: #ddd;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 30px;
+            position: relative;
+        }
+        
+        .header-controls {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .header-image {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+        
+        h1 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            padding-bottom: 5px;
+            margin-top: 30px;
+        }
+        
+        h3, h4 {
+            color: var(--primary-color);
+        }
+        
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+        
+        .price-table th, .price-table td {
+            border: 1px solid var(--border-color);
+            padding: 10px;
+            text-align: left;
+        }
+        
+        .price-table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .btn {
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .theme-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .lang-btn {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid var(--border-color);
+            background-color: var(--card-bg);
+        }
+        
+        .contact-link {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .contact-link:hover {
+            text-decoration: underline;
+        }
+        
+        .map-container {
+            width: 100%;
+            height: 300px;
+            margin: 15px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .map-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        
+        .timetable {
+            margin-top: 15px;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .timetable th, .timetable td {
+            border: 1px solid var(--border-color);
+            padding: 8px;
+            text-align: center;
+        }
+        
+        .timetable th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .walking-route {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .map-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 10px;
+            }
+            
+            .card {
+                padding: 15px;
+            }
+            
+            .timetable {
+                font-size: 0.8em;
+            }
+            
+            .header-controls {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <header>
+            
+            <div class="container">
+        <header>
+            <div class="header-controls">
+                <button id="themeToggle" class="btn theme-btn">Light Mode</button>
+                <button id="langToggle" class="btn lang-btn">日本語</button>
+            </div>
+            
+            <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Guest House Nandeyanen" class="header-image">
+            <h1 id="main-title">Guest House<br>Nandeyanen</h1>
+            <p id="address">〒905-0214 Okinawa Prefecture, Kunigami District, Motobu, Tokuji 4-7</p>
+            
+            <div class="map-grid">
+                <div>
+                    <h3 id="location-map-title">Location Map</h3>
+                    <div class="map-container">
+                        <!-- 修正したGoogleマップ埋め込みコード -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+                <div>
+                    <h3 id="bus-stop-map-title">From Tokuji Bus Stop</h3>
+                    <div class="map-container">
+                        <!-- バス停からのルートマップも修正 -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!3m2!1d26.650000000000006!2d127.88000000000001!4m5!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!3m2!1d26.6505!2d127.8802!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
+                </div>
+            </div>
+        </header>
+
+        <!-- 他のセクションは変更なし -->
+    </div>
+
+        <div class="section" id="basicInfo">
+            <h2 id="basic-info-title">Basic Information</h2>
+            <div class="card">
+                <p><strong id="official-name-label">Official Name:</strong> <span id="official-name">Guest House Nandeyanen</span></p>
+                <p><strong id="location-label">Location:</strong> <span id="location-text"> 
+             4-7 Tokuji
+             Motobu
+             Kunigami
+             Okinawa
+             〒905-0214   
+           </span></p>
+                <p><strong id="phone-label">Phone:</strong> <span id="phone-number">090-6000-2112</span></p>
+                <p><strong id="checkin-label">Check-in:</strong> <span id="checkin-time">15:00 (until 22:00)</span> / <strong id="checkout-label">Check-out:</strong> <span id="checkout-time">12:00</span></p>
+                
+                <h3 id="accommodation-title">Accommodation & Prices</h3>
+                <table class="price-table">
+                    <tr>
+                        <th id="room-type-label">Type</th>
+                        <th id="price-label">Price</th>
+                    </tr>
+                    <tr>
+                        <td id="dormitory-label">Dormitory</td>
+                        <td id="dormitory-price">¥1,800/night</td>
+                    </tr>
+                    <tr>
+                        <td id="private-1-label">Private Room (1 person)</td>
+                        <td id="private-1-price">¥2,300/night</td>
+                    </tr>
+                    <tr>
+                        <td id="private-2-label">Private Room (2 people)</td>
+                        <td id="private-2-price">¥2,000 per person/night</td>
+                    </tr>
+                </table>
+                
+                <h3 id="facilities-title">Facilities & Services</h3>
+                <ul id="facilities-list">
+                    <li id="facility-1">Shared shower/toilet</li>
+                    <li id="facility-2">Kitchen appliances (IH cooker, rice cooker, etc.)</li>
+                    <li id="facility-3">Washing machine</li>
+                    <li id="facility-4">Free Wi-Fi</li>
+                    <li id="facility-5">BBQ equipment</li>
+                    <li id="facility-6">Fishing gear</li>
+                    <li id="facility-7">Guitar & Sanshin (Okinawan instrument)</li>
+                </ul>
+                
+                <p><strong id="parking-label">Parking:</strong> <span id="parking-info">Free parking space within 1 minute walk</span></p>
+            </div>
+        </div>
+        
+        <div class="section" id="access">
+            <h2 id="transportation-title">Transportation Access</h2>
+            <div class="card">
+                <h3 id="by-bus-title">By Bus</h3>
+                <p><strong id="bus-stop-label">"Tokuji" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers).</span></p>
+                
+                <h4 id="timetable-title">Sample Timetable from Naha (Route 65)</h4>
+                <table class="timetable">
+                    <tr>
+                        <th id="departure-label">Departure (Naha)</th>
+                        <th id="arrival-label">Arrival (Tokuji)</th>
+                        <th id="frequency-label">Frequency</th>
+                    </tr>
+                    <tr>
+                        <td>07:00</td>
+                        <td>09:30</td>
+                        <td id="frequency-1">Every 30-60 min</td>
+                    </tr>
+                    <tr>
+                        <td>09:00</td>
+                        <td>11:30</td>
+                        <td id="frequency-2">Every 30-60 min</td>
+                    </tr>
+                    <tr>
+                        <td>11:00</td>
+                        <td>13:30</td>
+                        <td id="frequency-3">Every 30-60 min</td>
+                    </tr>
+                    <tr>
+                        <td>13:00</td>
+                        <td>15:30</td>
+                        <td id="frequency-4">Every 30-60 min</td>
+                    </tr>
+                    <tr>
+                        <td>15:00</td>
+                        <td>17:30</td>
+                        <td id="frequency-5">Every 30-60 min</td>
+                    </tr>
+                </table>
+                
+                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus:</strong> <span id="yanbaru-bus-info">Stops near Motobu High School or Tokuji Port.</span></p>
+                
+                <h3 id="by-car-title">By Car</h3>
+                <p id="car-info">About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.</p>
+            </div>
+        </div>
+        
+        <div class="section" id="sightseeing">
+            <h2 id="sightseeing-title">Nearby Sightseeing & Convenience Spots</h2>
+            <div class="card">
+                <ol id="sightseeing-list">
+                    <li><strong id="spot-1">Motobu Town Market:</strong> <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span></li>
+                    <li><strong id="spot-2">Kishimoto Shokudo:</strong> <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span></li>
+                    <li><strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> <span id="spot-3-desc">About 7-8 minutes by car, also accessible by bus.</span></li>
+                    <li><strong id="spot-4">Motobu Port & Tokuji Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
+                    <li><strong id="spot-5">Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:</strong> <span id="spot-5-desc">Easy day trip destinations by rental car or bus tour.</span></li>
+                    <li><strong id="spot-6">JUNGLIA (activity facility):</strong> <span id="spot-6-desc">Enjoy nature experiences and river activities in Motobu.</span></li>
+                    <li><strong id="spot-7">Supermarkets & Convenience Stores:</strong> <span id="spot-7-desc">3 supermarkets, 2 convenience stores, and 3 drugstores within walking distance.</span></li>
+                </ol>
+            </div>
+        </div>
+        
+        <div class="section" id="summary">
+            <h2 id="summary-title">Summary</h2>
+            <div class="card">
+                <table class="price-table">
+                    <tr>
+                        <th id="summary-category-label">Category</th>
+                        <th id="summary-details-label">Details</th>
+                    </tr>
+                    <tr>
+                        <td id="summary-price-label">Price</td>
+                        <td id="summary-price-value">Dorm ¥1,800 / Private room from ¥2,300</td>
+                    </tr>
+                    <tr>
+                        <td id="summary-access-label">Access</td>
+                        <td id="summary-access-value">Right by Tokuji bus stop. Car OK, parking available</td>
+                    </tr>
+                    <tr>
+                        <td id="summary-facilities-label">Facilities</td>
+                        <td id="summary-facilities-value">Kitchen, BBQ, fishing gear, instruments, Wi-Fi</td>
+                    </tr>
+                    <tr>
+                        <td id="summary-surroundings-label">Surroundings</td>
+                        <td id="summary-surroundings-value">Market, food, Motobu Port, Churaumi Aquarium, easy island access</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="section" id="tips">
+            <h2 id="tips-title">Tips</h2>
+            <div class="card">
+                <p id="tip-1">Great for solo travelers and those who value social interaction: The shared "Yuntaku Room" naturally facilitates conversation with other guests ("yuntaku" means chatting in Okinawan dialect).</p>
+                <p id="tip-2">Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.</p>
+                <p id="tip-3">Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.</p>
+            </div>
+        </div>
+        
+        <footer>
+            <p id="contact-text">Contact us<br>
+            <a href="mailto:mementomorikatsu@gmail.com" class="contact-link" id="contact-email">mementomorikatsu@gmail.com</a></p>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'light') {
+                themeToggle.textContent = 'Dark Mode';
+            }
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let targetTheme = 'light';
+            
+            if (currentTheme === 'light') {
+                targetTheme = 'dark';
+                themeToggle.textContent = 'Light Mode';
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+            }
+            
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+        });
+        
+        // Language content
+        const content = {
+            en: {
+                mainTitle: "Guest House<br>Nandeyanen",
+                address: "〒905-0214 Okinawa Prefecture, Kunigami District, Motobu, Tokuji 4-7",
+                locationMapTitle: "Location Map",
+                busStopMapTitle: "From Tokuji Bus Stop",
+                walkingTime: "1 minute walk (80m)",
+                basicInfoTitle: "Basic Information",
+                officialNameLabel: "Official Name:",
+                officialName: "Guest House Nandeyanen",
+                locationLabel: "Location:",
+                locationText: "〒905-0214 Okinawa Prefecture, Kunigami District, Motobu, Tokuji 4-7",
+                phoneLabel: "Phone:",
+                phoneNumber: "090-6000-2112",
+                checkinLabel: "Check-in:",
+                checkinTime: "15:00 (until 22:00)",
+                checkoutLabel: "Check-out:",
+                checkoutTime: "12:00",
+                accommodationTitle: "Accommodation & Prices",
+                roomTypeLabel: "Type",
+                priceLabel: "Price",
+                dormitoryLabel: "Dormitory",
+                dormitoryPrice: "¥1,800/night",
+                private1Label: "Private Room (1 person)",
+                private1Price: "¥2,300/night",
+                private2Label: "Private Room (2 people)",
+                private2Price: "¥2,000 per person/night",
+                facilitiesTitle: "Facilities & Services",
+                facility1: "Shared shower/toilet",
+                facility2: "Kitchen appliances (IH cooker, rice cooker, etc.)",
+                facility3: "Washing machine",
+                facility4: "Free Wi-Fi",
+                facility5: "BBQ equipment",
+                facility6: "Fishing gear",
+                facility7: "Guitar & Sanshin (Okinawan instrument)",
+                parkingLabel: "Parking:",
+                parkingInfo: "Free parking space within 1 minute walk",
+                transportationTitle: "Transportation Access",
+                byBusTitle: "By Bus",
+                busStopLabel: "\"Tokuji\" bus stop:",
+                busStopInfo: "About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers).",
+                timetableTitle: "Sample Timetable from Naha (Route 65)",
+                departureLabel: "Departure (Naha)",
+                arrivalLabel: "Arrival (Tokuji)",
+                frequencyLabel: "Frequency",
+                frequency1: "Every 30-60 min",
+                frequency2: "Every 30-60 min",
+                frequency3: "Every 30-60 min",
+                frequency4: "Every 30-60 min",
+                frequency5: "Every 30-60 min",
+                yanbaruBusLabel: "Yanbaru Express Bus:",
+                yanbaruBusInfo: "Stops near Motobu High School or Tokuji Port.",
+                byCarTitle: "By Car",
+                carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
+                sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
+                spot1: "Motobu Town Market:",
+                spot1Desc: "Right in front of the guest house. Full of fresh seafood and local food.",
+                spot2: "Kishimoto Shokudo:",
+                spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
+                spot3: "Churaumi Aquarium & Ocean Expo Park:",
+                spot3Desc: "About 7-8 minutes by car, also accessible by bus.",
+                spot4: "Motobu Port & Tokuji Port:",
+                spot4Desc: "Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.",
+                spot5: "Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:",
+                spot5Desc: "Easy day trip destinations by rental car or bus tour.",
+                spot6: "JUNGLIA (activity facility):",
+                spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
+                spot7: "Supermarkets & Convenience Stores:",
+                spot7Desc: "3 supermarkets, 2 convenience stores, and 3 drugstores within walking distance.",
+                summaryTitle: "Summary",
+                summaryCategoryLabel: "Category",
+                summaryDetailsLabel: "Details",
+                summaryPriceLabel: "Price",
+                summaryPriceValue: "Dorm ¥1,800 / Private room from ¥2,300",
+                summaryAccessLabel: "Access",
+                summaryAccessValue: "Right by Tokuji bus stop. Car OK, parking available",
+                summaryFacilitiesLabel: "Facilities",
+                summaryFacilitiesValue: "Kitchen, BBQ, fishing gear, instruments, Wi-Fi",
+                summarySurroundingsLabel: "Surroundings",
+                summarySurroundingsValue: "Market, food, Motobu Port, Churaumi Aquarium, easy island access",
+                tipsTitle: "Tips",
+                tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
+                tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
+                tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
+                contactText: "Contact me",
+                contactEmail: "mementomorikatsu@gmail.com",
+                themeBtn: "Light Mode",
+                langBtn: "日本語"
+            },
+            ja: {
+                mainTitle: "ゲストハウス<br>なんで家ねん",
+                address: "〒905-0214 沖縄県国頭郡本部町渡久地4-7",
+                locationMapTitle: "所在地マップ",
+                busStopMapTitle: "渡久地バス停から",
+                walkingTime: "徒歩1分 (80m)",
+                basicInfoTitle: "基本情報",
+                officialNameLabel: "正式名称:",
+                officialName: "ゲストハウス なんで家ねん",
+                locationLabel: "所在地:",
+                locationText: "〒905-0214沖縄県国頭郡本部町渡久地4-7",
+                phoneLabel: "電話番号:",
+                phoneNumber: "090-6000-2112",
+                checkinLabel: "チェックイン:",
+                checkinTime: "15:00 (22:00まで)",
+                checkoutLabel: "チェックアウト:",
+                checkoutTime: "12:00",
+                accommodationTitle: "宿泊スタイル・料金",
+                roomTypeLabel: "タイプ",
+                priceLabel: "料金",
+                dormitoryLabel: "ドミトリー",
+                dormitoryPrice: "¥1,800/泊",
+                private1Label: "個室 (1名)",
+                private1Price: "¥2,300/泊",
+                private2Label: "個室 (2名)",
+                private2Price: "¥2,000/人/泊",
+                facilitiesTitle: "設備・サービス",
+                facility1: "共用シャワー・トイレ",
+                facility2: "キッチン家電 (IH・炊飯器など)",
+                facility3: "洗濯機",
+                facility4: "Wi-Fi無料",
+                facility5: "BBQ道具",
+                facility6: "釣り具",
+                facility7: "ギター＆三線",
+                parkingLabel: "駐車場:",
+                parkingInfo: "徒歩1分圏内に無料駐車スペースあり",
+                transportationTitle: "交通アクセス",
+                byBusTitle: "バスで",
+                busStopLabel: "「渡久地」バス停:",
+                busStopInfo: "徒歩約1分。沖縄バス65・66・70・76番が停車（那覇からの直行バスに乗り換えなしで便利）",
+                timetableTitle: "那覇からの時刻表サンプル (路線65)",
+                departureLabel: "出発 (那覇)",
+                arrivalLabel: "到着 (渡久地)",
+                frequencyLabel: "頻度",
+                frequency1: "30-60分間隔",
+                frequency2: "30-60分間隔",
+                frequency3: "30-60分間隔",
+                frequency4: "30-60分間隔",
+                frequency5: "30-60分間隔",
+                yanbaruBusLabel: "やんばる急行バス:",
+                yanbaruBusInfo: "本部高校前または渡久地港近くに停車",
+                byCarTitle: "車で",
+                carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
+                sightseeingTitle: "周辺観光＆便利スポット",
+                spot1: "本部町営市場:",
+                spot1Desc: "ゲストハウス目の前。新鮮魚介やローカルグルメが豊富",
+                spot2: "きしもと食堂:",
+                spot2Desc: "明治38年創業の老舗沖縄そば店で、本部町の名物グルメ",
+                spot3: "美ら海水族館、海洋博公園 &フクギ並木:",
+                spot3Desc: "車約7〜8分、バスでもアクセス可能",
+                spot4: "本部港・渡久地港:",
+                spot4Desc: "瀬底島(橋で渡れる。)・水納島(渡久地港から)・伊江島(本部港から)など離島への船が出港",
+                spot5: "今帰仁城跡、フクギ並木、古宇利島:",
+                spot5Desc: "レンタカーやバスで日帰りで行きやすい観光地",
+                spot6: "JUNGLIA（アクティビティ施設）:",
+                spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
+                spot7: "スーパー・コンビニ:",
+                spot7Desc: "スーパー3軒、コンビニ2軒、ドラッグストア3軒が徒歩圏内で生活にも便利",
+                summaryTitle: "まとめ",
+                summaryCategoryLabel: "内容",
+                summaryDetailsLabel: "詳細",
+                summaryPriceLabel: "料金",
+                summaryPriceValue: "ドミ ¥1,800／個室 ¥2,300～",
+                summaryAccessLabel: "アクセス",
+                summaryAccessValue: "渡久地バス停すぐ。車OK、駐車場あり",
+                summaryFacilitiesLabel: "設備",
+                summaryFacilitiesValue: "キッチン・BBQ・釣り・楽器・Wi-Fi完備",
+                summarySurroundingsLabel: "周辺",
+                summarySurroundingsValue: "市場・グルメ・本部港・美ら海水族館・離島アクセス良好",
+                tipsTitle: "アドバイス",
+                tip1: "一人旅や交流重視の方に◎：共用スペースの「ゆんたくルーム」で他ゲストとゆんたく（おしゃべり）が自然に発生",
+                tip2: "滞在中の過ごし方提案：ドミトリー数泊＋離島巡り（瀬底島、水納島、伊江島）＋美ら海水族館＆今帰仁城など、本部町の旅を満喫できます",
+                tip3: "自炊派にもおすすめ：市場やスーパーが近く、自炊道具・キッチンも充実。地元食材を楽しめます",
+                contactText: "連絡先",
+                contactEmail: "mementomorikatsu@gmail.com",
+                themeBtn: "ライトモード",
+                langBtn: "English"
+            }
+        };
+
+        // Apply translations
+        function applyTranslations(lang) {
+            const data = content[lang];
+            
+            // Header
+            document.getElementById('main-title').innerHTML = data.mainTitle;
+            document.getElementById('address').textContent = data.address;
+            document.getElementById('location-map-title').textContent = data.locationMapTitle;
+            document.getElementById('bus-stop-map-title').textContent = data.busStopMapTitle;
+            document.getElementById('walking-time').textContent = data.walkingTime;
+            
+            // Basic Info
+            document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
+            document.getElementById('official-name-label').textContent = data.officialNameLabel;
+            document.getElementById('official-name').textContent = data.officialName;
+            document.getElementById('location-label').textContent = data.locationLabel;
+            document.getElementById('location-text').textContent = data.locationText;
+            document.getElementById('phone-label').textContent = data.phoneLabel;
+            document.getElementById('phone-number').textContent = data.phoneNumber;
+            document.getElementById('checkin-label').textContent = data.checkinLabel;
+            document.getElementById('checkin-time').textContent = data.checkinTime;
+            document.getElementById('checkout-label').textContent = data.checkoutLabel;
+            document.getElementById('checkout-time').textContent = data.checkoutTime;
+            document.getElementById('accommodation-title').textContent = data.accommodationTitle;
+            document.getElementById('room-type-label').textContent = data.roomTypeLabel;
+            document.getElementById('price-label').textContent = data.priceLabel;
+            document.getElementById('dormitory-label').textContent = data.dormitoryLabel;
+            document.getElementById('dormitory-price').textContent = data.dormitoryPrice;
+            document.getElementById('private-1-label').textContent = data.private1Label;
+            document.getElementById('private-1-price').textContent = data.private1Price;
+            document.getElementById('private-2-label').textContent = data.private2Label;
+            document.getElementById('private-2-price').textContent = data.private2Price;
+            document.getElementById('facilities-title').textContent = data.facilitiesTitle;
+            document.getElementById('facility-1').textContent = data.facility1;
+            document.getElementById('facility-2').textContent = data.facility2;
+            document.getElementById('facility-3').textContent = data.facility3;
+            document.getElementById('facility-4').textContent = data.facility4;
+            document.getElementById('facility-5').textContent = data.facility5;
+            document.getElementById('facility-6').textContent = data.facility6;
+            document.getElementById('facility-7').textContent = data.facility7;
+            document.getElementById('parking-label').textContent = data.parkingLabel;
+            document.getElementById('parking-info').textContent = data.parkingInfo;
+            
+            // Transportation
+            document.getElementById('transportation-title').textContent = data.transportationTitle;
+            document.getElementById('by-bus-title').textContent = data.byBusTitle;
+            document.getElementById('bus-stop-label').textContent = data.busStopLabel;
+            document.getElementById('bus-stop-info').textContent = data.busStopInfo;
+            document.getElementById('timetable-title').textContent = data.timetableTitle;
+            document.getElementById('departure-label').textContent = data.departureLabel;
+            document.getElementById('arrival-label').textContent = data.arrivalLabel;
+            document.getElementById('frequency-label').textContent = data.frequencyLabel;
+            document.getElementById('frequency-1').textContent = data.frequency1;
+            document.getElementById('frequency-2').textContent = data.frequency2;
+            document.getElementById('frequency-3').textContent = data.frequency3;
+            document.getElementById('frequency-4').textContent = data.frequency4;
+            document.getElementById('frequency-5').textContent = data.frequency5;
+            document.getElementById('yanbaru-bus-label').textContent = data.yanbaruBusLabel;
+            document.getElementById('yanbaru-bus-info').textContent = data.yanbaruBusInfo;
+            document.getElementById('by-car-title').textContent = data.byCarTitle;
+            document.getElementById('car-info').textContent = data.carInfo;
+            
+            // Sightseeing
+            document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
+            document.getElementById('spot-1').textContent = data.spot1;
+            document.getElementById('spot-1-desc').textContent = data.spot1Desc;
+            document.getElementById('spot-2').textContent = data.spot2;
+            document.getElementById('spot-2-desc').textContent = data.spot2Desc;
+            document.getElementById('spot-3').textContent = data.spot3;
+            document.getElementById('spot-3-desc').textContent = data.spot3Desc;
+            document.getElementById('spot-4').textContent = data.spot4;
+            document.getElementById('spot-4-desc').textContent = data.spot4Desc;
+            document.getElementById('spot-5').textContent = data.spot5;
+            document.getElementById('spot-5-desc').textContent = data.spot5Desc;
+            document.getElementById('spot-6').textContent = data.spot6;
+            document.getElementById('spot-6-desc').textContent = data.spot6Desc;
+            document.getElementById('spot-7').textContent = data.spot7;
+            document.getElementById('spot-7-desc').textContent = data.spot7Desc;
+            
+            // Summary
+            document.getElementById('summary-title').textContent = data.summaryTitle;
+            document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
+            document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
+            document.getElementById('summary-price-label').textContent = data.summaryPriceLabel;
+            document.getElementById('summary-price-value').textContent = data.summaryPriceValue;
+            document.getElementById('summary-access-label').textContent = data.summaryAccessLabel;
+            document.getElementById('summary-access-value').textContent = data.summaryAccessValue;
+            document.getElementById('summary-facilities-label').textContent = data.summaryFacilitiesLabel;
+            document.getElementById('summary-facilities-value').textContent = data.summaryFacilitiesValue;
+            document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
+            document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
+            
+            // Tips
+            document.getElementById('tips-title').textContent = data.tipsTitle;
+            document.getElementById('tip-1').textContent = data.tip1;
+            document.getElementById('tip-2').textContent = data.tip2;
+            document.getElementById('tip-3').textContent = data.tip3;
+            
+            // Footer
+            document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
+            
+            // Buttons
+            themeToggle.textContent = data.themeBtn;
+            langToggle.textContent = data.langBtn;
+        }
+
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const currentLang = localStorage.getItem('lang') || 'en';
+        
+        if (currentLang === 'ja') {
+            applyTranslations('ja');
+        }
+        
+        langToggle.addEventListener('click', function() {
+            let currentLang = localStorage.getItem('lang') || 'en';
+            let targetLang = currentLang === 'en' ? 'ja' : 'en';
+            
+            applyTranslations(targetLang);
+            localStorage.setItem('lang', targetLang);
+        });
+        
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('data:application/javascript;charset=utf-8,' + encodeURIComponent(`
+                    self.addEventListener('install', event => {
+                        event.waitUntil(self.skipWaiting());
+                    });
+                    
+                    self.addEventListener('activate', event => {
+                        event.waitUntil(self.clients.claim());
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request).then(response => {
+                                return response || fetch(event.request);
+                            })
+                        );
+                    });
+                `));
+            });
+        }
+    </script>
+</body>
+</html>
