@@ -241,14 +241,12 @@
                 <div>
                     <h3 id="location-map-title">Location Map</h3>
                     <div class="map-container">
-                        <!-- Updated Google Maps embed -->
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <div>
                     <h3 id="bus-stop-map-title">From Toguchi Bus Stop</h3>
                     <div class="map-container">
-                        <!-- Bus stop route map -->
                         <img src="https://pbs.twimg.com/media/GpSfbNTbYAAS45x.jpg" alt="Guest House Nandeyanen" class="header-image">
                     </div>
                     <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
@@ -425,24 +423,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
     </div>
 
     <script>
-        // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        
-        // Apply saved theme on load
-        document.documentElement.setAttribute('data-theme', currentTheme);
-        themeToggle.textContent = currentTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-        
-        themeToggle.addEventListener('click', function() {
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let targetTheme = currentTheme === 'light' ? 'dark' : 'light';
-            
-            document.documentElement.setAttribute('data-theme', targetTheme);
-            localStorage.setItem('theme', targetTheme);
-            themeToggle.textContent = targetTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-        });
-        
-        // Language content
+        // 翻訳データ
         const content = {
             en: {
                 mainTitle: "Guest House<br>Nandeyanen",
@@ -527,7 +508,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
                 tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
                 tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
                 tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
-                contactText: "Contact me",
+                contactText: "Contact us",
                 contactEmail: "mementomorikatsu@gmail.com",
                 themeBtn: "Light Mode",
                 langBtn: "日本語"
@@ -629,18 +610,18 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             }
         };
 
-        // Apply translations
+        // 翻訳を適用する関数
         function applyTranslations(lang) {
             const data = content[lang];
             
-            // Header
+            // ヘッダー
             document.getElementById('main-title').innerHTML = data.mainTitle;
             document.getElementById('address').textContent = data.address;
             document.getElementById('location-map-title').textContent = data.locationMapTitle;
             document.getElementById('bus-stop-map-title').textContent = data.busStopMapTitle;
             document.getElementById('walking-time').textContent = data.walkingTime;
             
-            // Basic Info
+            // 基本情報
             document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
             document.getElementById('official-name-label').textContent = data.officialNameLabel;
             document.getElementById('official-name').textContent = data.officialName;
@@ -672,7 +653,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('parking-label').textContent = data.parkingLabel;
             document.getElementById('parking-info').textContent = data.parkingInfo;
             
-            // Transportation
+            // 交通アクセス
             document.getElementById('transportation-title').textContent = data.transportationTitle;
             document.getElementById('by-bus-title').textContent = data.byBusTitle;
             document.getElementById('bus-stop-label').textContent = data.busStopLabel;
@@ -691,7 +672,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('by-car-title').textContent = data.byCarTitle;
             document.getElementById('car-info').textContent = data.carInfo;
             
-            // Sightseeing
+            // 観光スポット
             document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
             document.getElementById('spot-1').textContent = data.spot1;
             document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
@@ -708,7 +689,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('spot-7').textContent = data.spot7;
             document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
             
-            // Summary
+            // サマリー
             document.getElementById('summary-title').textContent = data.summaryTitle;
             document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
             document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
@@ -721,39 +702,57 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
             document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
             
-            // Tips
+            // ヒント
             document.getElementById('tips-title').textContent = data.tipsTitle;
             document.getElementById('tip-1').textContent = data.tip1;
             document.getElementById('tip-2').textContent = data.tip2;
             document.getElementById('tip-3').textContent = data.tip3;
             
-            // Footer
+            // フッター
             document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
             
-            // Update button text
+            // ボタン
+            document.getElementById('themeToggle').textContent = data.themeBtn;
             document.getElementById('langToggle').textContent = data.langBtn;
         }
 
-        // Language toggle functionality
-        const langToggle = document.getElementById('langToggle');
-        const currentLang = localStorage.getItem('lang') || 'en';
-        
-        // Apply saved language on load
-        if (currentLang === 'ja') {
-            applyTranslations('ja');
-            langToggle.textContent = 'English';
-        } else {
-            langToggle.textContent = '日本語';
-        }
-        
-        langToggle.addEventListener('click', function() {
-            let currentLang = localStorage.getItem('lang') || 'en';
-            let targetLang = currentLang === 'en' ? 'ja' : 'en';
+        // 初期設定関数
+        function initializeSettings() {
+            // テーマ設定
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            document.getElementById('themeToggle').textContent = 
+                savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
             
-            applyTranslations(targetLang);
-            localStorage.setItem('lang', targetLang);
-            langToggle.textContent = targetLang === 'en' ? '日本語' : 'English';
+            // 言語設定
+            const savedLang = localStorage.getItem('lang') || 'en';
+            applyTranslations(savedLang);
+            document.getElementById('langToggle').textContent = 
+                savedLang === 'en' ? '日本語' : 'English';
+        }
+
+        // テーマ切り替え
+        document.getElementById('themeToggle').addEventListener('click', function() {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            this.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
         });
+
+        // 言語切り替え
+        document.getElementById('langToggle').addEventListener('click', function() {
+            const currentLang = localStorage.getItem('lang') || 'en';
+            const newLang = currentLang === 'en' ? 'ja' : 'en';
+            
+            applyTranslations(newLang);
+            localStorage.setItem('lang', newLang);
+            this.textContent = newLang === 'en' ? '日本語' : 'English';
+        });
+
+        // ページ読み込み時に初期設定を適用
+        window.addEventListener('DOMContentLoaded', initializeSettings);
     </script>
 </body>
 </html>
