@@ -225,9 +225,6 @@
     
     <div class="container">
         <header>
-            
-            <div class="container">
-        <header>
             <div class="header-controls">
                 <button id="themeToggle" class="btn theme-btn">Light Mode</button>
                 <button id="langToggle" class="btn lang-btn">日本語</button>
@@ -235,34 +232,26 @@
             
             <img src="https://pbs.twimg.com/media/GpSfbNTbYAAS45x.jpg" alt="Guest House Nandeyanen" class="header-image">
             <h1 id="main-title">Guest House<br>Nandeyanen</h1>
-            <p id="address">4-7 Tokuji Motobu Kunigami Okinawa 〒905-0214</p>
+            <p id="address">4-7 Toguchi Motobu Kunigami Okinawa 〒905-0214</p>
             
             <div class="map-grid">
                 <div>
                     <h3 id="location-map-title">Location Map</h3>
                     <div class="map-container">
-                        <!-- 修正したGoogleマップ埋め込みコード -->
-   
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
-                     
+                        <!-- Updated Google Maps embed -->
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <div>
-                    <h3 id="bus-stop-map-title">From Tokuji Bus Stop</h3>
+                    <h3 id="bus-stop-map-title">From Toguchi Bus Stop</h3>
                     <div class="map-container">
-                        <!-- バス停からのルートマップも修正 -->
-
- <img src="https://imgur.com/gallery/JlBmV2V" alt="Guest House Nandeyanen" class="header-image">
-
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e2!4m5!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!3m2!1d26.650000000000006!2d127.88000000000001!4m5!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!3m2!1d26.6505!2d127.8802!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
+                        <!-- Bus stop route map -->
+                        <img src="https://i.imgur.com/JlBmV2V.jpg" alt="Walking route from bus stop" style="width:100%;height:100%;object-fit:cover;">
                     </div>
                     <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
                 </div>
             </div>
         </header>
-
-        <!-- 他のセクションは変更なし -->
-    </div>
 
         <div class="section" id="basicInfo">
             <h2 id="basic-info-title">Basic Information</h2>
@@ -317,13 +306,13 @@
             <h2 id="transportation-title">Transportation Access</h2>
             <div class="card">
                 <h3 id="by-bus-title">By Bus</h3>
-                <p><strong id="bus-stop-label">"Tokuji" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers).</span></p>
+                <p><strong id="bus-stop-label">"Toguchi" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).</span></p>
                 
                 <h4 id="timetable-title">Sample Timetable from Naha (Route 65)</h4>
                 <table class="timetable">
                     <tr>
                         <th id="departure-label">Departure (Naha)</th>
-                        <th id="arrival-label">Arrival (Tokuji)</th>
+                        <th id="arrival-label">Arrival (Toguchi)</th>
                         <th id="frequency-label">Frequency</th>
                     </tr>
                     <tr>
@@ -353,7 +342,7 @@
                     </tr>
                 </table>
                 
-                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus:</strong> <span id="yanbaru-bus-info">Stops near Motobu High School or Tokuji Port.</span></p>
+                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus (YKB):</strong> <span id="yanbaru-bus-info">Stops near Motobu High School or Toguchi Port.</span></p>
                 
                 <h3 id="by-car-title">By Car</h3>
                 <p id="car-info">About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.</p>
@@ -367,10 +356,18 @@
                     <li><strong id="spot-1">Motobu Town Market:</strong> <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span></li>
                     <li><strong id="spot-2">Kishimoto Shokudo:</strong> <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span></li>
                     <li><strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> <span id="spot-3-desc">About 7-8 minutes by car, also accessible by bus.</span></li>
-                    <li><strong id="spot-4">Motobu Port & Tokuji Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
+                    <li><strong id="spot-4">Motobu Port & Toguchi Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
                     <li><strong id="spot-5">Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:</strong> <span id="spot-5-desc">Easy day trip destinations by rental car or bus tour.</span></li>
                     <li><strong id="spot-6">JUNGLIA (activity facility):</strong> <span id="spot-6-desc">Enjoy nature experiences and river activities in Motobu.</span></li>
-                    <li><strong id="spot-7">Supermarkets & Convenience Stores:</strong> <span id="spot-7-desc">3 supermarkets, 2 convenience stores, and 3 drugstores within walking distance.</span></li>
+                    <li><strong id="spot-7">Supermarkets & Convenience Stores:</strong> <span id="spot-7-desc">
+                        <ul>
+                            <li>サンエー (San-A): 10min (750m)</li>
+                            <li>かねひで (Kanehide): 15min (1.1km)</li>
+                            <li>ザ・ビッグ (The Big): 25min (1.8km)</li>
+                            <li>セブンイレブン (7-Eleven): 25min (1.8km)</li>
+                            <li>ローソン (Lawson): 20min (1.5km)</li>
+                        </ul>
+                    </span></li>
                 </ol>
             </div>
         </div>
@@ -389,7 +386,7 @@
                     </tr>
                     <tr>
                         <td id="summary-access-label">Access</td>
-                        <td id="summary-access-value">Right by Tokuji bus stop. Car OK, parking available</td>
+                        <td id="summary-access-value">Right by Toguchi bus stop. Car OK, parking available</td>
                     </tr>
                     <tr>
                         <td id="summary-facilities-label">Facilities</td>
@@ -452,7 +449,7 @@
                 mainTitle: "Guest House<br>Nandeyanen",
                 address: "〒905-0214 Okinawa Prefecture, Kunigami District, Motobu, Toguchi 4-7",
                 locationMapTitle: "Location Map",
-                busStopMapTitle: "From Tokuji Bus Stop",
+                busStopMapTitle: "From Toguchi Bus Stop",
                 walkingTime: "1 minute walk (80m)",
                 basicInfoTitle: "Basic Information",
                 officialNameLabel: "Official Name:",
@@ -486,19 +483,19 @@
                 parkingInfo: "Free parking space within 1 minute walk",
                 transportationTitle: "Transportation Access",
                 byBusTitle: "By Bus",
-                busStopLabel: "\"Tokuji\" bus stop:",
-                busStopInfo: "About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers).",
+                busStopLabel: "\"Toguchi\" bus stop:",
+                busStopInfo: "About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).",
                 timetableTitle: "Sample Timetable from Naha (Route 65)",
                 departureLabel: "Departure (Naha)",
-                arrivalLabel: "Arrival (Tokuji)",
+                arrivalLabel: "Arrival (Toguchi)",
                 frequencyLabel: "Frequency",
                 frequency1: "Every 30-60 min",
                 frequency2: "Every 30-60 min",
                 frequency3: "Every 30-60 min",
                 frequency4: "Every 30-60 min",
                 frequency5: "Every 30-60 min",
-                yanbaruBusLabel: "Yanbaru Express Bus:",
-                yanbaruBusInfo: "Stops near Motobu High School or Tokuji Port.",
+                yanbaruBusLabel: "Yanbaru Express Bus (YKB):",
+                yanbaruBusInfo: "Stops near Motobu High School or Toguchi Port.",
                 byCarTitle: "By Car",
                 carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
                 sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
@@ -508,21 +505,21 @@
                 spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
                 spot3: "Churaumi Aquarium & Ocean Expo Park:",
                 spot3Desc: "About 7-8 minutes by car, also accessible by bus.",
-                spot4: "Motobu Port & Tokuji Port:",
+                spot4: "Motobu Port & Toguchi Port:",
                 spot4Desc: "Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.",
                 spot5: "Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:",
                 spot5Desc: "Easy day trip destinations by rental car or bus tour.",
                 spot6: "JUNGLIA (activity facility):",
                 spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
                 spot7: "Supermarkets & Convenience Stores:",
-                spot7Desc: "3 supermarkets, 2 convenience stores, and 3 drugstores within walking distance.",
+                spot7Desc: "<ul><li>サンエー (San-A): 10min (750m)</li><li>かねひで (Kanehide): 15min (1.1km)</li><li>ザ・ビッグ (The Big): 25min (1.8km)</li><li>セブンイレブン (7-Eleven): 25min (1.8km)</li><li>ローソン (Lawson): 20min (1.5km)</li></ul>",
                 summaryTitle: "Summary",
                 summaryCategoryLabel: "Category",
                 summaryDetailsLabel: "Details",
                 summaryPriceLabel: "Price",
                 summaryPriceValue: "Dorm ¥1,800 / Private room from ¥2,300",
                 summaryAccessLabel: "Access",
-                summaryAccessValue: "Right by Tokuji bus stop. Car OK, parking available",
+                summaryAccessValue: "Right by Toguchi bus stop. Car OK, parking available",
                 summaryFacilitiesLabel: "Facilities",
                 summaryFacilitiesValue: "Kitchen, BBQ, fishing gear, instruments, Wi-Fi",
                 summarySurroundingsLabel: "Surroundings",
@@ -575,7 +572,7 @@
                 transportationTitle: "交通アクセス",
                 byBusTitle: "バスで",
                 busStopLabel: "「渡久地」バス停:",
-                busStopInfo: "徒歩約1分。沖縄バス65・66・70・76番が停車（那覇からの直行バスに乗り換えなしで便利）",
+                busStopInfo: "徒歩約1分。沖縄バス65・66・70・76番が停車（那覇からの直行バスに乗り換えなしで便利）。やんばる急行バス(YKB)でもアクセス可能",
                 timetableTitle: "那覇からの時刻表サンプル (路線65)",
                 departureLabel: "出発 (那覇)",
                 arrivalLabel: "到着 (渡久地)",
@@ -585,7 +582,7 @@
                 frequency3: "30-60分間隔",
                 frequency4: "30-60分間隔",
                 frequency5: "30-60分間隔",
-                yanbaruBusLabel: "やんばる急行バス:",
+                yanbaruBusLabel: "やんばる急行バス(YKB):",
                 yanbaruBusInfo: "本部高校前または渡久地港近くに停車",
                 byCarTitle: "車で",
                 carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
@@ -603,7 +600,7 @@
                 spot6: "JUNGLIA（アクティビティ施設）:",
                 spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
                 spot7: "スーパー・コンビニ:",
-                spot7Desc: "スーパー3軒、コンビニ2軒、ドラッグストア3軒が徒歩圏内で生活にも便利",
+                spot7Desc: "<ul><li>サンエー: 徒歩10分 (750m)</li><li>かねひで: 徒歩15分 (1.1km)</li><li>ザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
                 summaryTitle: "まとめ",
                 summaryCategoryLabel: "内容",
                 summaryDetailsLabel: "詳細",
@@ -691,19 +688,19 @@
             // Sightseeing
             document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
             document.getElementById('spot-1').textContent = data.spot1;
-            document.getElementById('spot-1-desc').textContent = data.spot1Desc;
+            document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
             document.getElementById('spot-2').textContent = data.spot2;
-            document.getElementById('spot-2-desc').textContent = data.spot2Desc;
+            document.getElementById('spot-2-desc').innerHTML = data.spot2Desc;
             document.getElementById('spot-3').textContent = data.spot3;
-            document.getElementById('spot-3-desc').textContent = data.spot3Desc;
+            document.getElementById('spot-3-desc').innerHTML = data.spot3Desc;
             document.getElementById('spot-4').textContent = data.spot4;
-            document.getElementById('spot-4-desc').textContent = data.spot4Desc;
+            document.getElementById('spot-4-desc').innerHTML = data.spot4Desc;
             document.getElementById('spot-5').textContent = data.spot5;
-            document.getElementById('spot-5-desc').textContent = data.spot5Desc;
+            document.getElementById('spot-5-desc').innerHTML = data.spot5Desc;
             document.getElementById('spot-6').textContent = data.spot6;
-            document.getElementById('spot-6-desc').textContent = data.spot6Desc;
+            document.getElementById('spot-6-desc').innerHTML = data.spot6Desc;
             document.getElementById('spot-7').textContent = data.spot7;
-            document.getElementById('spot-7-desc').textContent = data.spot7Desc;
+            document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
             
             // Summary
             document.getElementById('summary-title').textContent = data.summaryTitle;
