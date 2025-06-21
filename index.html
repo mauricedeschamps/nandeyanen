@@ -429,27 +429,17 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
         const themeToggle = document.getElementById('themeToggle');
         const currentTheme = localStorage.getItem('theme') || 'dark';
         
-        if (currentTheme) {
-            document.documentElement.setAttribute('data-theme', currentTheme);
-            
-            if (currentTheme === 'light') {
-                themeToggle.textContent = 'Dark Mode';
-            }
-        }
+        // Apply saved theme on load
+        document.documentElement.setAttribute('data-theme', currentTheme);
+        themeToggle.textContent = currentTheme === 'light' ? 'Dark Mode' : 'Light Mode';
         
         themeToggle.addEventListener('click', function() {
             let currentTheme = document.documentElement.getAttribute('data-theme');
-            let targetTheme = 'light';
-            
-            if (currentTheme === 'light') {
-                targetTheme = 'dark';
-                themeToggle.textContent = 'Light Mode';
-            } else {
-                themeToggle.textContent = 'Dark Mode';
-            }
+            let targetTheme = currentTheme === 'light' ? 'dark' : 'light';
             
             document.documentElement.setAttribute('data-theme', targetTheme);
             localStorage.setItem('theme', targetTheme);
+            themeToggle.textContent = targetTheme === 'light' ? 'Dark Mode' : 'Light Mode';
         });
         
         // Language content
@@ -740,17 +730,20 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             // Footer
             document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
             
-            // Buttons
-            themeToggle.textContent = data.themeBtn;
-            langToggle.textContent = data.langBtn;
+            // Update button text
+            document.getElementById('langToggle').textContent = data.langBtn;
         }
 
         // Language toggle functionality
         const langToggle = document.getElementById('langToggle');
         const currentLang = localStorage.getItem('lang') || 'en';
         
+        // Apply saved language on load
         if (currentLang === 'ja') {
             applyTranslations('ja');
+            langToggle.textContent = 'English';
+        } else {
+            langToggle.textContent = '日本語';
         }
         
         langToggle.addEventListener('click', function() {
@@ -759,30 +752,8 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             
             applyTranslations(targetLang);
             localStorage.setItem('lang', targetLang);
+            langToggle.textContent = targetLang === 'en' ? '日本語' : 'English';
         });
-        
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('data:application/javascript;charset=utf-8,' + encodeURIComponent(`
-                    self.addEventListener('install', event => {
-                        event.waitUntil(self.skipWaiting());
-                    });
-                    
-                    self.addEventListener('activate', event => {
-                        event.waitUntil(self.clients.claim());
-                    });
-                    
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request).then(response => {
-                                return response || fetch(event.request);
-                            })
-                        );
-                    });
-                `));
-            });
-        }
     </script>
 </body>
 </html>
