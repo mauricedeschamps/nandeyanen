@@ -241,12 +241,14 @@
                 <div>
                     <h3 id="location-map-title">Location Map</h3>
                     <div class="map-container">
+                        <!-- Updated Google Maps embed -->
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
                     </div>
                 </div>
                 <div>
                     <h3 id="bus-stop-map-title">From Toguchi Bus Stop</h3>
                     <div class="map-container">
+                        <!-- Bus stop route map -->
                         <img src="https://pbs.twimg.com/media/GpSfbNTbYAAS45x.jpg" alt="Guest House Nandeyanen" class="header-image">
                     </div>
                     <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
@@ -307,15 +309,9 @@
             <h2 id="transportation-title">Transportation Access</h2>
             <div class="card">
                 <h3 id="by-bus-title">By Bus</h3>
-                <p><strong id="bus-stop-label">"Toguchi" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. 
-Served by Okinawa Bus routes 
-No.65 (Nago→toguchi→Nakijin)
-No.66 (Nakijin→Toguchi→Nago) 
-No.70 (Nago↔Toguchi↔Nizato) 
-No.76 (Nago↔Toguchi↔Sesoko) 
-Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha without transfers.</span></p>
+                <p><strong id="bus-stop-label">"Toguchi" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).</span></p>
                 
-                <h4 id="timetable-title">Timetable from Naha (YKB)</h4>
+                <h4 id="timetable-title">Sample Timetable from Naha (YKB)</h4>
                 <table class="timetable">
                     <tr>
                         <th id="departure-label">Departure (Naha)</th>
@@ -349,7 +345,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
                     </tr>
                 </table>
                 
-                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus (YKB):</strong> <span id="yanbaru-bus-info">Stops near Motobu High School.(800m to guest house.)</span></p>
+                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus (YKB):</strong> <span id="yanbaru-bus-info">Stops near Motobu High School or Toguchi Port.</span></p>
                 
                 <h3 id="by-car-title">By Car</h3>
                 <p id="car-info">About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.</p>
@@ -423,7 +419,34 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
     </div>
 
     <script>
-        // 翻訳データ
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        
+        if (currentTheme) {
+            document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            if (currentTheme === 'light') {
+                themeToggle.textContent = 'Dark Mode';
+            }
+        }
+        
+        themeToggle.addEventListener('click', function() {
+            let currentTheme = document.documentElement.getAttribute('data-theme');
+            let targetTheme = 'light';
+            
+            if (currentTheme === 'light') {
+                targetTheme = 'dark';
+                themeToggle.textContent = 'Light Mode';
+            } else {
+                themeToggle.textContent = 'Dark Mode';
+            }
+            
+            document.documentElement.setAttribute('data-theme', targetTheme);
+            localStorage.setItem('theme', targetTheme);
+        });
+        
+        // Language content
         const content = {
             en: {
                 mainTitle: "Guest House<br>Nandeyanen",
@@ -508,7 +531,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
                 tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
                 tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
                 tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
-                contactText: "Contact us",
+                contactText: "Contact me",
                 contactEmail: "mementomorikatsu@gmail.com",
                 themeBtn: "Light Mode",
                 langBtn: "日本語"
@@ -552,15 +575,8 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
                 transportationTitle: "交通アクセス",
                 byBusTitle: "バスで",
                 busStopLabel: "「渡久地」バス停:",
-                busStopInfo: 
-"徒歩約1分。
-沖縄バス
-65番(名護→渡久地→今帰仁)
-66番(今帰仁→渡久地→名護)
-70番(名護↔渡久地↔新里)
-76番(名護↔渡久地↔瀬底)
-やんばる急行バス(YKB)でもアクセス可能（那覇からの直行バスに乗り換えなしで便利）",
-                timetableTitle: "那覇からの時刻表 (YKB)",
+                busStopInfo: "徒歩約1分。沖縄バス65・66・70・76番が停車（那覇からの直行バスに乗り換えなしで便利）。やんばる急行バス(YKB)でもアクセス可能",
+                timetableTitle: "那覇からの時刻表サンプル (路線65)",
                 departureLabel: "出発 (那覇)",
                 arrivalLabel: "到着 (渡久地)",
                 frequencyLabel: "頻度",
@@ -570,7 +586,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
                 frequency4: "30-60分間隔",
                 frequency5: "30-60分間隔",
                 yanbaruBusLabel: "やんばる急行バス(YKB):",
-                yanbaruBusInfo: "本部高校前に停車(宿まで800m)",
+                yanbaruBusInfo: "本部高校前または渡久地港近くに停車",
                 byCarTitle: "車で",
                 carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
                 sightseeingTitle: "周辺観光＆便利スポット",
@@ -610,18 +626,18 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             }
         };
 
-        // 翻訳を適用する関数
+        // Apply translations
         function applyTranslations(lang) {
             const data = content[lang];
             
-            // ヘッダー
+            // Header
             document.getElementById('main-title').innerHTML = data.mainTitle;
             document.getElementById('address').textContent = data.address;
             document.getElementById('location-map-title').textContent = data.locationMapTitle;
             document.getElementById('bus-stop-map-title').textContent = data.busStopMapTitle;
             document.getElementById('walking-time').textContent = data.walkingTime;
             
-            // 基本情報
+            // Basic Info
             document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
             document.getElementById('official-name-label').textContent = data.officialNameLabel;
             document.getElementById('official-name').textContent = data.officialName;
@@ -653,7 +669,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('parking-label').textContent = data.parkingLabel;
             document.getElementById('parking-info').textContent = data.parkingInfo;
             
-            // 交通アクセス
+            // Transportation
             document.getElementById('transportation-title').textContent = data.transportationTitle;
             document.getElementById('by-bus-title').textContent = data.byBusTitle;
             document.getElementById('bus-stop-label').textContent = data.busStopLabel;
@@ -672,7 +688,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('by-car-title').textContent = data.byCarTitle;
             document.getElementById('car-info').textContent = data.carInfo;
             
-            // 観光スポット
+            // Sightseeing
             document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
             document.getElementById('spot-1').textContent = data.spot1;
             document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
@@ -689,7 +705,7 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('spot-7').textContent = data.spot7;
             document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
             
-            // サマリー
+            // Summary
             document.getElementById('summary-title').textContent = data.summaryTitle;
             document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
             document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
@@ -702,57 +718,58 @@ Also accessible by Yanbaru Express Bus (YKB).Convenient direct buses from Naha w
             document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
             document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
             
-            // ヒント
+            // Tips
             document.getElementById('tips-title').textContent = data.tipsTitle;
             document.getElementById('tip-1').textContent = data.tip1;
             document.getElementById('tip-2').textContent = data.tip2;
             document.getElementById('tip-3').textContent = data.tip3;
             
-            // フッター
+            // Footer
             document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
             
-            // ボタン
-            document.getElementById('themeToggle').textContent = data.themeBtn;
-            document.getElementById('langToggle').textContent = data.langBtn;
+            // Buttons
+            themeToggle.textContent = data.themeBtn;
+            langToggle.textContent = data.langBtn;
         }
 
-        // 初期設定関数
-        function initializeSettings() {
-            // テーマ設定
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            document.getElementById('themeToggle').textContent = 
-                savedTheme === 'light' ? 'Dark Mode' : 'Light Mode';
-            
-            // 言語設定
-            const savedLang = localStorage.getItem('lang') || 'en';
-            applyTranslations(savedLang);
-            document.getElementById('langToggle').textContent = 
-                savedLang === 'en' ? '日本語' : 'English';
+        // Language toggle functionality
+        const langToggle = document.getElementById('langToggle');
+        const currentLang = localStorage.getItem('lang') || 'en';
+        
+        if (currentLang === 'ja') {
+            applyTranslations('ja');
         }
-
-        // テーマ切り替え
-        document.getElementById('themeToggle').addEventListener('click', function() {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+        
+        langToggle.addEventListener('click', function() {
+            let currentLang = localStorage.getItem('lang') || 'en';
+            let targetLang = currentLang === 'en' ? 'ja' : 'en';
             
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            this.textContent = newTheme === 'light' ? 'Dark Mode' : 'Light Mode';
+            applyTranslations(targetLang);
+            localStorage.setItem('lang', targetLang);
         });
-
-        // 言語切り替え
-        document.getElementById('langToggle').addEventListener('click', function() {
-            const currentLang = localStorage.getItem('lang') || 'en';
-            const newLang = currentLang === 'en' ? 'ja' : 'en';
-            
-            applyTranslations(newLang);
-            localStorage.setItem('lang', newLang);
-            this.textContent = newLang === 'en' ? '日本語' : 'English';
-        });
-
-        // ページ読み込み時に初期設定を適用
-        window.addEventListener('DOMContentLoaded', initializeSettings);
+        
+        // Service Worker registration for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('data:application/javascript;charset=utf-8,' + encodeURIComponent(`
+                    self.addEventListener('install', event => {
+                        event.waitUntil(self.skipWaiting());
+                    });
+                    
+                    self.addEventListener('activate', event => {
+                        event.waitUntil(self.clients.claim());
+                    });
+                    
+                    self.addEventListener('fetch', event => {
+                        event.respondWith(
+                            caches.match(event.request).then(response => {
+                                return response || fetch(event.request);
+                            })
+                        );
+                    });
+                `));
+            });
+        }
     </script>
 </body>
 </html>
