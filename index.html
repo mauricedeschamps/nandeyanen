@@ -420,372 +420,360 @@
 
     <script>
         // Theme toggle functionality
-        const themeToggle = document.getElementById('themeToggle');
-        const currentTheme = localStorage.getItem('theme') || 'dark';
-        
-        if (currentTheme) {
-            document.documentElement.setAttribute('data-theme', currentTheme);
+        document.addEventListener('DOMContentLoaded', function() {
+            const themeToggle = document.getElementById('themeToggle');
+            const langToggle = document.getElementById('langToggle');
             
-            if (currentTheme === 'light') {
-                themeToggle.textContent = 'Dark Mode';
-            }
-        }
-        
-        themeToggle.addEventListener('click', function() {
-            let currentTheme = document.documentElement.getAttribute('data-theme');
-            let targetTheme = 'light';
-            
-            if (currentTheme === 'light') {
-                targetTheme = 'dark';
-                themeToggle.textContent = 'Light Mode';
-            } else {
-                themeToggle.textContent = 'Dark Mode';
+            // Initialize theme
+            function initTheme() {
+                const savedTheme = localStorage.getItem('theme') || 'dark';
+                document.documentElement.setAttribute('data-theme', savedTheme);
+                updateThemeButton(savedTheme);
             }
             
-            document.documentElement.setAttribute('data-theme', targetTheme);
-            localStorage.setItem('theme', targetTheme);
-        });
-        
-        // Language content
-        const content = {
-            en: {
-                mainTitle: "Guest House<br>Nandeyanen",
-                address: "4-7 Toguchi Motobu Kunigami Okinawa  〒905-0214",
-                locationMapTitle: "Location Map",
-                busStopMapTitle: "From Toguchi Bus Stop",
-                walkingTime: "1 minute walk (80m)",
-                basicInfoTitle: "Basic Information",
-                officialNameLabel: "Official Name:",
-                officialName: "Guest House Nandeyanen",
-                locationLabel: "Location:",
-                locationText: "4-7 Toguchi Motobu Kunigami Okinawa 〒905-0214",
-                phoneLabel: "Phone:",
-                phoneNumber: "090-6000-2112",
-                checkinLabel: "Check-in:",
-                checkinTime: "15:00 (until 22:00)",
-                checkoutLabel: "Check-out:",
-                checkoutTime: "12:00",
-                accommodationTitle: "Accommodation & Prices",
-                roomTypeLabel: "Type",
-                priceLabel: "Price",
-                dormitoryLabel: "Dormitory",
-                dormitoryPrice: "¥1,800/night",
-                private1Label: "Private Room (1 person)",
-                private1Price: "¥2,300/night",
-                private2Label: "Private Room (2 people)",
-                private2Price: "¥2,000 per person/night",
-                facilitiesTitle: "Facilities & Services",
-                facility1: "Shared shower/toilet",
-                facility2: "Kitchen appliances (IH cooker, rice cooker, etc.)",
-                facility3: "Washing machine",
-                facility4: "Free Wi-Fi",
-                facility5: "BBQ equipment",
-                facility6: "Fishing gear",
-                facility7: "Guitar & Sanshin (Okinawan instrument)",
-                parkingLabel: "Parking:",
-                parkingInfo: "Free parking space within 1 minute walk",
-                transportationTitle: "Transportation Access",
-                byBusTitle: "By Bus",
-                busStopLabel: "\"Toguchi\" bus stop:",
-                busStopInfo: "About 1 minute walk. 
-Served by Okinawa Bus 
-routes 65, 
-66, 
-70, 
-and 76 
-(
-Also accessible by Yanbaru
-convenient direct buses from Naha without transfers). 
-Express Bus (YKB).",
-
-                timetableTitle: "Sample Timetable from Naha (Route 65)",
-                departureLabel: "Departure (Naha)",
-                arrivalLabel: "Arrival (Toguchi)",
-                frequencyLabel: "Frequency",
-                frequency1: "Every 30-60 min",
-                frequency2: "Every 30-60 min",
-                frequency3: "Every 30-60 min",
-                frequency4: "Every 30-60 min",
-                frequency5: "Every 30-60 min",
-                yanbaruBusLabel: "Yanbaru Express Bus (YKB):",
-                yanbaruBusInfo: "Stops near Motobu High School or Toguchi Port.",
-                byCarTitle: "By Car",
-                carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
-                sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
-                spot1: "Motobu Town Market:",
-                spot1Desc: "Right in front of the guest house. Full of fresh seafood and local food.",
-                spot2: "Kishimoto Shokudo:",
-                spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
-                spot3: "Churaumi Aquarium & Ocean Expo Park:",
-                spot3Desc: "About 7-8 minutes by car, also accessible by bus.",
-                spot4: "Motobu Port & Toguchi Port:",
-                spot4Desc: "Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.",
-                spot5: "Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:",
-                spot5Desc: "Easy day trip destinations by rental car or bus tour.",
-                spot6: "JUNGLIA (activity facility):",
-                spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
-                spot7: "Supermarkets & Convenience Stores:",
-                spot7Desc: "<ul><li>Supermarket San-A: 10min (750m)</li><li>Supermarket Kanehide: 15min (1.1km)</li><li>Supermarket The Big: 25min (1.8km)</li><li>7-Eleven: 25min (1.8km)</li><li>Lawson: 20min (1.5km)</li></ul>",
-                summaryTitle: "Summary",
-                summaryCategoryLabel: "Category",
-                summaryDetailsLabel: "Details",
-                summaryPriceLabel: "Price",
-                summaryPriceValue: "Dorm ¥1,800 / Private room from ¥2,300",
-                summaryAccessLabel: "Access",
-                summaryAccessValue: "Right by Toguchi bus stop. Car OK, parking available",
-                summaryFacilitiesLabel: "Facilities",
-                summaryFacilitiesValue: "Kitchen, BBQ, fishing gear, instruments, Wi-Fi",
-                summarySurroundingsLabel: "Surroundings",
-                summarySurroundingsValue: "Market, food, Motobu Port, Churaumi Aquarium, easy island access",
-                tipsTitle: "Tips",
-                tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
-                tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
-                tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
-                contactText: "Contact me",
-                contactEmail: "mementomorikatsu@gmail.com",
-                themeBtn: "Light Mode",
-                langBtn: "日本語"
-            },
-            ja: {
-                mainTitle: "ゲストハウス<br>なんで家ねん",
-                address: "〒905-0214 沖縄県国頭郡本部町渡久地4-7",
-                locationMapTitle: "所在地マップ",
-                busStopMapTitle: "渡久地バス停から",
-                walkingTime: "徒歩1分 (80m)",
-                basicInfoTitle: "基本情報",
-                officialNameLabel: "正式名称:",
-                officialName: "ゲストハウス なんで家ねん",
-                locationLabel: "所在地:",
-                locationText: "〒905-0214沖縄県国頭郡本部町渡久地4-7",
-                phoneLabel: "電話番号:",
-                phoneNumber: "090-6000-2112",
-                checkinLabel: "チェックイン:",
-                checkinTime: "15:00 (22:00まで)",
-                checkoutLabel: "チェックアウト:",
-                checkoutTime: "12:00",
-                accommodationTitle: "宿泊スタイル・料金",
-                roomTypeLabel: "タイプ",
-                priceLabel: "料金",
-                dormitoryLabel: "ドミトリー",
-                dormitoryPrice: "¥1,800/泊",
-                private1Label: "個室 (1名)",
-                private1Price: "¥2,300/泊",
-                private2Label: "個室 (2名)",
-                private2Price: "¥2,000/人/泊",
-                facilitiesTitle: "設備・サービス",
-                facility1: "共用シャワー・トイレ",
-                facility2: "キッチン家電 (IH・炊飯器など)",
-                facility3: "洗濯機",
-                facility4: "Wi-Fi無料",
-                facility5: "BBQ道具",
-                facility6: "釣り具",
-                facility7: "ギター＆三線",
-                parkingLabel: "駐車場:",
-                parkingInfo: "徒歩1分圏内に無料駐車スペースあり",
-                transportationTitle: "交通アクセス",
-                byBusTitle: "バスで",
-                busStopLabel: "「渡久地」バス停:",
-                busStopInfo: "徒歩約1分。
-沖縄バス
-65番(名護→渡久地→今帰仁)
-66番(今帰仁→渡久地→名護)
-70番(名護↔渡久地↔新里)
-76番(名護↔渡久地↔瀬底)
-やんばる急行バス(YKB)でもアクセス可能（那覇からの直行バスに乗り換えなしで便利）",
-                timetableTitle: "那覇からの時刻表 (YKB)",
-                departureLabel: "出発 (那覇)",
-                arrivalLabel: "到着 (渡久地)",
-                frequencyLabel: "頻度",
-                frequency1: "30-60分間隔",
-                frequency2: "30-60分間隔",
-                frequency3: "30-60分間隔",
-                frequency4: "30-60分間隔",
-                frequency5: "30-60分間隔",
-                yanbaruBusLabel: "やんばる急行バス(YKB):",
-                yanbaruBusInfo: "本部高校前に停車",
-                byCarTitle: "車で",
-                carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
-                sightseeingTitle: "周辺観光＆便利スポット",
-                spot1: "本部町営市場:",
-                spot1Desc: "ゲストハウス目の前。新鮮魚介やローカルグルメが豊富",
-                spot2: "きしもと食堂:",
-                spot2Desc: "明治38年創業の老舗沖縄そば店で、本部町の名物グルメ",
-                spot3: "美ら海水族館、海洋博公園 &フクギ並木:",
-                spot3Desc: "車約7〜8分、バスでもアクセス可能",
-                spot4: "本部港・渡久地港:",
-                spot4Desc: "瀬底島(橋で渡れる。)・水納島(渡久地港から)・伊江島(本部港から)など離島への船が出港",
-                spot5: "今帰仁城跡、フクギ並木、古宇利島:",
-                spot5Desc: "レンタカーやバスで日帰りで行きやすい観光地",
-                spot6: "JUNGLIA（アクティビティ施設）:",
-                spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
-                spot7: "スーパー・コンビニ:",
-                spot7Desc: "<ul><li>サンエー: 徒歩10分 (750m)</li><li>かねひで: 徒歩15分 (1.1km)</li><li>ザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
-                summaryTitle: "まとめ",
-                summaryCategoryLabel: "内容",
-                summaryDetailsLabel: "詳細",
-                summaryPriceLabel: "料金",
-                summaryPriceValue: "ドミ ¥1,800／個室 ¥2,300～",
-                summaryAccessLabel: "アクセス",
-                summaryAccessValue: "渡久地バス停すぐ。車OK、駐車場あり",
-                summaryFacilitiesLabel: "設備",
-                summaryFacilitiesValue: "キッチン・BBQ・釣り・楽器・Wi-Fi完備",
-                summarySurroundingsLabel: "周辺",
-                summarySurroundingsValue: "市場・グルメ・本部港・美ら海水族館・離島アクセス良好",
-                tipsTitle: "アドバイス",
-                tip1: "一人旅や交流重視の方に◎：共用スペースの「ゆんたくルーム」で他ゲストとゆんたく（おしゃべり）が自然に発生",
-                tip2: "滞在中の過ごし方提案：ドミトリー数泊＋離島巡り（瀬底島、水納島、伊江島）＋美ら海水族館＆今帰仁城など、本部町の旅を満喫できます",
-                tip3: "自炊派にもおすすめ：市場やスーパーが近く、自炊道具・キッチンも充実。地元食材を楽しめます",
-                contactText: "連絡先",
-                contactEmail: "mementomorikatsu@gmail.com",
-                themeBtn: "ライトモード",
-                langBtn: "English"
+            // Update theme button text
+            function updateThemeButton(theme) {
+                themeToggle.textContent = theme === 'dark' ? 'Light Mode' : 'Dark Mode';
             }
-        };
-
-        // Apply translations
-        function applyTranslations(lang) {
-            const data = content[lang];
             
-            // Header
-            document.getElementById('main-title').innerHTML = data.mainTitle;
-            document.getElementById('address').textContent = data.address;
-            document.getElementById('location-map-title').textContent = data.locationMapTitle;
-            document.getElementById('bus-stop-map-title').textContent = data.busStopMapTitle;
-            document.getElementById('walking-time').textContent = data.walkingTime;
-            
-            // Basic Info
-            document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
-            document.getElementById('official-name-label').textContent = data.officialNameLabel;
-            document.getElementById('official-name').textContent = data.officialName;
-            document.getElementById('location-label').textContent = data.locationLabel;
-            document.getElementById('location-text').textContent = data.locationText;
-            document.getElementById('phone-label').textContent = data.phoneLabel;
-            document.getElementById('phone-number').textContent = data.phoneNumber;
-            document.getElementById('checkin-label').textContent = data.checkinLabel;
-            document.getElementById('checkin-time').textContent = data.checkinTime;
-            document.getElementById('checkout-label').textContent = data.checkoutLabel;
-            document.getElementById('checkout-time').textContent = data.checkoutTime;
-            document.getElementById('accommodation-title').textContent = data.accommodationTitle;
-            document.getElementById('room-type-label').textContent = data.roomTypeLabel;
-            document.getElementById('price-label').textContent = data.priceLabel;
-            document.getElementById('dormitory-label').textContent = data.dormitoryLabel;
-            document.getElementById('dormitory-price').textContent = data.dormitoryPrice;
-            document.getElementById('private-1-label').textContent = data.private1Label;
-            document.getElementById('private-1-price').textContent = data.private1Price;
-            document.getElementById('private-2-label').textContent = data.private2Label;
-            document.getElementById('private-2-price').textContent = data.private2Price;
-            document.getElementById('facilities-title').textContent = data.facilitiesTitle;
-            document.getElementById('facility-1').textContent = data.facility1;
-            document.getElementById('facility-2').textContent = data.facility2;
-            document.getElementById('facility-3').textContent = data.facility3;
-            document.getElementById('facility-4').textContent = data.facility4;
-            document.getElementById('facility-5').textContent = data.facility5;
-            document.getElementById('facility-6').textContent = data.facility6;
-            document.getElementById('facility-7').textContent = data.facility7;
-            document.getElementById('parking-label').textContent = data.parkingLabel;
-            document.getElementById('parking-info').textContent = data.parkingInfo;
-            
-            // Transportation
-            document.getElementById('transportation-title').textContent = data.transportationTitle;
-            document.getElementById('by-bus-title').textContent = data.byBusTitle;
-            document.getElementById('bus-stop-label').textContent = data.busStopLabel;
-            document.getElementById('bus-stop-info').textContent = data.busStopInfo;
-            document.getElementById('timetable-title').textContent = data.timetableTitle;
-            document.getElementById('departure-label').textContent = data.departureLabel;
-            document.getElementById('arrival-label').textContent = data.arrivalLabel;
-            document.getElementById('frequency-label').textContent = data.frequencyLabel;
-            document.getElementById('frequency-1').textContent = data.frequency1;
-            document.getElementById('frequency-2').textContent = data.frequency2;
-            document.getElementById('frequency-3').textContent = data.frequency3;
-            document.getElementById('frequency-4').textContent = data.frequency4;
-            document.getElementById('frequency-5').textContent = data.frequency5;
-            document.getElementById('yanbaru-bus-label').textContent = data.yanbaruBusLabel;
-            document.getElementById('yanbaru-bus-info').textContent = data.yanbaruBusInfo;
-            document.getElementById('by-car-title').textContent = data.byCarTitle;
-            document.getElementById('car-info').textContent = data.carInfo;
-            
-            // Sightseeing
-            document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
-            document.getElementById('spot-1').textContent = data.spot1;
-            document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
-            document.getElementById('spot-2').textContent = data.spot2;
-            document.getElementById('spot-2-desc').innerHTML = data.spot2Desc;
-            document.getElementById('spot-3').textContent = data.spot3;
-            document.getElementById('spot-3-desc').innerHTML = data.spot3Desc;
-            document.getElementById('spot-4').textContent = data.spot4;
-            document.getElementById('spot-4-desc').innerHTML = data.spot4Desc;
-            document.getElementById('spot-5').textContent = data.spot5;
-            document.getElementById('spot-5-desc').innerHTML = data.spot5Desc;
-            document.getElementById('spot-6').textContent = data.spot6;
-            document.getElementById('spot-6-desc').innerHTML = data.spot6Desc;
-            document.getElementById('spot-7').textContent = data.spot7;
-            document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
-            
-            // Summary
-            document.getElementById('summary-title').textContent = data.summaryTitle;
-            document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
-            document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
-            document.getElementById('summary-price-label').textContent = data.summaryPriceLabel;
-            document.getElementById('summary-price-value').textContent = data.summaryPriceValue;
-            document.getElementById('summary-access-label').textContent = data.summaryAccessLabel;
-            document.getElementById('summary-access-value').textContent = data.summaryAccessValue;
-            document.getElementById('summary-facilities-label').textContent = data.summaryFacilitiesLabel;
-            document.getElementById('summary-facilities-value').textContent = data.summaryFacilitiesValue;
-            document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
-            document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
-            
-            // Tips
-            document.getElementById('tips-title').textContent = data.tipsTitle;
-            document.getElementById('tip-1').textContent = data.tip1;
-            document.getElementById('tip-2').textContent = data.tip2;
-            document.getElementById('tip-3').textContent = data.tip3;
-            
-            // Footer
-            document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
-            
-            // Buttons
-            themeToggle.textContent = data.themeBtn;
-            langToggle.textContent = data.langBtn;
-        }
-
-        // Language toggle functionality
-        const langToggle = document.getElementById('langToggle');
-        const currentLang = localStorage.getItem('lang') || 'en';
-        
-        if (currentLang === 'ja') {
-            applyTranslations('ja');
-        }
-        
-        langToggle.addEventListener('click', function() {
-            let currentLang = localStorage.getItem('lang') || 'en';
-            let targetLang = currentLang === 'en' ? 'ja' : 'en';
-            
-            applyTranslations(targetLang);
-            localStorage.setItem('lang', targetLang);
-        });
-        
-        // Service Worker registration for PWA
-        if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('data:application/javascript;charset=utf-8,' + encodeURIComponent(`
-                    self.addEventListener('install', event => {
-                        event.waitUntil(self.skipWaiting());
-                    });
-                    
-                    self.addEventListener('activate', event => {
-                        event.waitUntil(self.clients.claim());
-                    });
-                    
-                    self.addEventListener('fetch', event => {
-                        event.respondWith(
-                            caches.match(event.request).then(response => {
-                                return response || fetch(event.request);
-                            })
-                        );
-                    });
-                `));
+            // Toggle theme
+            themeToggle.addEventListener('click', function() {
+                const currentTheme = document.documentElement.getAttribute('data-theme');
+                const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+                
+                document.documentElement.setAttribute('data-theme', newTheme);
+                localStorage.setItem('theme', newTheme);
+                updateThemeButton(newTheme);
             });
-        }
+            
+            // Language content
+            const content = {
+                en: {
+                    mainTitle: "Guest House<br>Nandeyanen",
+                    address: "4-7 Toguchi Motobu Kunigami Okinawa  〒905-0214",
+                    locationMapTitle: "Location Map",
+                    busStopMapTitle: "From Toguchi Bus Stop",
+                    walkingTime: "1 minute walk (80m)",
+                    basicInfoTitle: "Basic Information",
+                    officialNameLabel: "Official Name:",
+                    officialName: "Guest House Nandeyanen",
+                    locationLabel: "Location:",
+                    locationText: "4-7 Toguchi Motobu Kunigami Okinawa 〒905-0214",
+                    phoneLabel: "Phone:",
+                    phoneNumber: "090-6000-2112",
+                    checkinLabel: "Check-in:",
+                    checkinTime: "15:00 (until 22:00)",
+                    checkoutLabel: "Check-out:",
+                    checkoutTime: "12:00",
+                    accommodationTitle: "Accommodation & Prices",
+                    roomTypeLabel: "Type",
+                    priceLabel: "Price",
+                    dormitoryLabel: "Dormitory",
+                    dormitoryPrice: "¥1,800/night",
+                    private1Label: "Private Room (1 person)",
+                    private1Price: "¥2,300/night",
+                    private2Label: "Private Room (2 people)",
+                    private2Price: "¥2,000 per person/night",
+                    facilitiesTitle: "Facilities & Services",
+                    facility1: "Shared shower/toilet",
+                    facility2: "Kitchen appliances (IH cooker, rice cooker, etc.)",
+                    facility3: "Washing machine",
+                    facility4: "Free Wi-Fi",
+                    facility5: "BBQ equipment",
+                    facility6: "Fishing gear",
+                    facility7: "Guitar & Sanshin (Okinawan instrument)",
+                    parkingLabel: "Parking:",
+                    parkingInfo: "Free parking space within 1 minute walk",
+                    transportationTitle: "Transportation Access",
+                    byBusTitle: "By Bus",
+                    busStopLabel: "\"Toguchi\" bus stop:",
+                    busStopInfo: "About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).",
+                    timetableTitle: "Sample Timetable from Naha (Route 65)",
+                    departureLabel: "Departure (Naha)",
+                    arrivalLabel: "Arrival (Toguchi)",
+                    frequencyLabel: "Frequency",
+                    frequency1: "Every 30-60 min",
+                    frequency2: "Every 30-60 min",
+                    frequency3: "Every 30-60 min",
+                    frequency4: "Every 30-60 min",
+                    frequency5: "Every 30-60 min",
+                    yanbaruBusLabel: "Yanbaru Express Bus (YKB):",
+                    yanbaruBusInfo: "Stops near Motobu High School or Toguchi Port.",
+                    byCarTitle: "By Car",
+                    carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
+                    sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
+                    spot1: "Motobu Town Market:",
+                    spot1Desc: "Right in front of the guest house. Full of fresh seafood and local food.",
+                    spot2: "Kishimoto Shokudo:",
+                    spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
+                    spot3: "Churaumi Aquarium & Ocean Expo Park:",
+                    spot3Desc: "About 7-8 minutes by car, also accessible by bus.",
+                    spot4: "Motobu Port & Toguchi Port:",
+                    spot4Desc: "Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.",
+                    spot5: "Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:",
+                    spot5Desc: "Easy day trip destinations by rental car or bus tour.",
+                    spot6: "JUNGLIA (activity facility):",
+                    spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
+                    spot7: "Supermarkets & Convenience Stores:",
+                    spot7Desc: "<ul><li>Supermarket San-A: 10min (750m)</li><li>Supermarket Kanehide: 15min (1.1km)</li><li>Supermarket The Big: 25min (1.8km)</li><li>7-Eleven: 25min (1.8km)</li><li>Lawson: 20min (1.5km)</li></ul>",
+                    summaryTitle: "Summary",
+                    summaryCategoryLabel: "Category",
+                    summaryDetailsLabel: "Details",
+                    summaryPriceLabel: "Price",
+                    summaryPriceValue: "Dorm ¥1,800 / Private room from ¥2,300",
+                    summaryAccessLabel: "Access",
+                    summaryAccessValue: "Right by Toguchi bus stop. Car OK, parking available",
+                    summaryFacilitiesLabel: "Facilities",
+                    summaryFacilitiesValue: "Kitchen, BBQ, fishing gear, instruments, Wi-Fi",
+                    summarySurroundingsLabel: "Surroundings",
+                    summarySurroundingsValue: "Market, food, Motobu Port, Churaumi Aquarium, easy island access",
+                    tipsTitle: "Tips",
+                    tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
+                    tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
+                    tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
+                    contactText: "Contact me",
+                    contactEmail: "mementomorikatsu@gmail.com",
+                    themeBtn: "Light Mode",
+                    langBtn: "日本語"
+                },
+                ja: {
+                    mainTitle: "ゲストハウス<br>なんで家ねん",
+                    address: "〒905-0214 沖縄県国頭郡本部町渡久地4-7",
+                    locationMapTitle: "所在地マップ",
+                    busStopMapTitle: "渡久地バス停から",
+                    walkingTime: "徒歩1分 (80m)",
+                    basicInfoTitle: "基本情報",
+                    officialNameLabel: "正式名称:",
+                    officialName: "ゲストハウス なんで家ねん",
+                    locationLabel: "所在地:",
+                    locationText: "〒905-0214沖縄県国頭郡本部町渡久地4-7",
+                    phoneLabel: "電話番号:",
+                    phoneNumber: "090-6000-2112",
+                    checkinLabel: "チェックイン:",
+                    checkinTime: "15:00 (22:00まで)",
+                    checkoutLabel: "チェックアウト:",
+                    checkoutTime: "12:00",
+                    accommodationTitle: "宿泊スタイル・料金",
+                    roomTypeLabel: "タイプ",
+                    priceLabel: "料金",
+                    dormitoryLabel: "ドミトリー",
+                    dormitoryPrice: "¥1,800/泊",
+                    private1Label: "個室 (1名)",
+                    private1Price: "¥2,300/泊",
+                    private2Label: "個室 (2名)",
+                    private2Price: "¥2,000/人/泊",
+                    facilitiesTitle: "設備・サービス",
+                    facility1: "共用シャワー・トイレ",
+                    facility2: "キッチン家電 (IH・炊飯器など)",
+                    facility3: "洗濯機",
+                    facility4: "Wi-Fi無料",
+                    facility5: "BBQ道具",
+                    facility6: "釣り具",
+                    facility7: "ギター＆三線",
+                    parkingLabel: "駐車場:",
+                    parkingInfo: "徒歩1分圏内に無料駐車スペースあり",
+                    transportationTitle: "交通アクセス",
+                    byBusTitle: "バスで",
+                    busStopLabel: "「渡久地」バス停:",
+                    busStopInfo: "徒歩約1分。沖縄バス65番(名護→渡久地→今帰仁)66番(今帰仁→渡久地→名護)70番(名護↔渡久地↔新里)76番(名護↔渡久地↔瀬底)やんばる急行バス(YKB)でもアクセス可能（那覇からの直行バスに乗り換えなしで便利）",
+                    timetableTitle: "那覇からの時刻表 (YKB)",
+                    departureLabel: "出発 (那覇)",
+                    arrivalLabel: "到着 (渡久地)",
+                    frequencyLabel: "頻度",
+                    frequency1: "30-60分間隔",
+                    frequency2: "30-60分間隔",
+                    frequency3: "30-60分間隔",
+                    frequency4: "30-60分間隔",
+                    frequency5: "30-60分間隔",
+                    yanbaruBusLabel: "やんばる急行バス(YKB):",
+                    yanbaruBusInfo: "本部高校前に停車",
+                    byCarTitle: "車で",
+                    carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
+                    sightseeingTitle: "周辺観光＆便利スポット",
+                    spot1: "本部町営市場:",
+                    spot1Desc: "ゲストハウス目の前。新鮮魚介やローカルグルメが豊富",
+                    spot2: "きしもと食堂:",
+                    spot2Desc: "明治38年創業の老舗沖縄そば店で、本部町の名物グルメ",
+                    spot3: "美ら海水族館、海洋博公園 &フクギ並木:",
+                    spot3Desc: "車約7〜8分、バスでもアクセス可能",
+                    spot4: "本部港・渡久地港:",
+                    spot4Desc: "瀬底島(橋で渡れる。)・水納島(渡久地港から)・伊江島(本部港から)など離島への船が出港",
+                    spot5: "今帰仁城跡、フクギ並木、古宇利島:",
+                    spot5Desc: "レンタカーやバスで日帰りで行きやすい観光地",
+                    spot6: "JUNGLIA（アクティビティ施設）:",
+                    spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
+                    spot7: "スーパー・コンビニ:",
+                    spot7Desc: "<ul><li>サンエー: 徒歩10分 (750m)</li><li>かねひで: 徒歩15分 (1.1km)</li><li>ザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
+                    summaryTitle: "まとめ",
+                    summaryCategoryLabel: "内容",
+                    summaryDetailsLabel: "詳細",
+                    summaryPriceLabel: "料金",
+                    summaryPriceValue: "ドミ ¥1,800／個室 ¥2,300～",
+                    summaryAccessLabel: "アクセス",
+                    summaryAccessValue: "渡久地バス停すぐ。車OK、駐車場あり",
+                    summaryFacilitiesLabel: "設備",
+                    summaryFacilitiesValue: "キッチン・BBQ・釣り・楽器・Wi-Fi完備",
+                    summarySurroundingsLabel: "周辺",
+                    summarySurroundingsValue: "市場・グルメ・本部港・美ら海水族館・離島アクセス良好",
+                    tipsTitle: "アドバイス",
+                    tip1: "一人旅や交流重視の方に◎：共用スペースの「ゆんたくルーム」で他ゲストとゆんたく（おしゃべり）が自然に発生",
+                    tip2: "滞在中の過ごし方提案：ドミトリー数泊＋離島巡り（瀬底島、水納島、伊江島）＋美ら海水族館＆今帰仁城など、本部町の旅を満喫できます",
+                    tip3: "自炊派にもおすすめ：市場やスーパーが近く、自炊道具・キッチンも充実。地元食材を楽しめます",
+                    contactText: "連絡先",
+                    contactEmail: "mementomorikatsu@gmail.com",
+                    themeBtn: "ライトモード",
+                    langBtn: "English"
+                }
+            };
+
+            // Apply translations
+            function applyTranslations(lang) {
+                const data = content[lang];
+                
+                // Header
+                document.getElementById('main-title').innerHTML = data.mainTitle;
+                document.getElementById('address').textContent = data.address;
+                document.getElementById('location-map-title').textContent = data.locationMapTitle;
+                document.getElementById('bus-stop-map-title').textContent = data.busStopMapTitle;
+                document.getElementById('walking-time').textContent = data.walkingTime;
+                
+                // Basic Info
+                document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
+                document.getElementById('official-name-label').textContent = data.officialNameLabel;
+                document.getElementById('official-name').textContent = data.officialName;
+                document.getElementById('location-label').textContent = data.locationLabel;
+                document.getElementById('location-text').textContent = data.locationText;
+                document.getElementById('phone-label').textContent = data.phoneLabel;
+                document.getElementById('phone-number').textContent = data.phoneNumber;
+                document.getElementById('checkin-label').textContent = data.checkinLabel;
+                document.getElementById('checkin-time').textContent = data.checkinTime;
+                document.getElementById('checkout-label').textContent = data.checkoutLabel;
+                document.getElementById('checkout-time').textContent = data.checkoutTime;
+                document.getElementById('accommodation-title').textContent = data.accommodationTitle;
+                document.getElementById('room-type-label').textContent = data.roomTypeLabel;
+                document.getElementById('price-label').textContent = data.priceLabel;
+                document.getElementById('dormitory-label').textContent = data.dormitoryLabel;
+                document.getElementById('dormitory-price').textContent = data.dormitoryPrice;
+                document.getElementById('private-1-label').textContent = data.private1Label;
+                document.getElementById('private-1-price').textContent = data.private1Price;
+                document.getElementById('private-2-label').textContent = data.private2Label;
+                document.getElementById('private-2-price').textContent = data.private2Price;
+                document.getElementById('facilities-title').textContent = data.facilitiesTitle;
+                document.getElementById('facility-1').textContent = data.facility1;
+                document.getElementById('facility-2').textContent = data.facility2;
+                document.getElementById('facility-3').textContent = data.facility3;
+                document.getElementById('facility-4').textContent = data.facility4;
+                document.getElementById('facility-5').textContent = data.facility5;
+                document.getElementById('facility-6').textContent = data.facility6;
+                document.getElementById('facility-7').textContent = data.facility7;
+                document.getElementById('parking-label').textContent = data.parkingLabel;
+                document.getElementById('parking-info').textContent = data.parkingInfo;
+                
+                // Transportation
+                document.getElementById('transportation-title').textContent = data.transportationTitle;
+                document.getElementById('by-bus-title').textContent = data.byBusTitle;
+                document.getElementById('bus-stop-label').textContent = data.busStopLabel;
+                document.getElementById('bus-stop-info').textContent = data.busStopInfo;
+                document.getElementById('timetable-title').textContent = data.timetableTitle;
+                document.getElementById('departure-label').textContent = data.departureLabel;
+                document.getElementById('arrival-label').textContent = data.arrivalLabel;
+                document.getElementById('frequency-label').textContent = data.frequencyLabel;
+                document.getElementById('frequency-1').textContent = data.frequency1;
+                document.getElementById('frequency-2').textContent = data.frequency2;
+                document.getElementById('frequency-3').textContent = data.frequency3;
+                document.getElementById('frequency-4').textContent = data.frequency4;
+                document.getElementById('frequency-5').textContent = data.frequency5;
+                document.getElementById('yanbaru-bus-label').textContent = data.yanbaruBusLabel;
+                document.getElementById('yanbaru-bus-info').textContent = data.yanbaruBusInfo;
+                document.getElementById('by-car-title').textContent = data.byCarTitle;
+                document.getElementById('car-info').textContent = data.carInfo;
+                
+                // Sightseeing
+                document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
+                document.getElementById('spot-1').textContent = data.spot1;
+                document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
+                document.getElementById('spot-2').textContent = data.spot2;
+                document.getElementById('spot-2-desc').innerHTML = data.spot2Desc;
+                document.getElementById('spot-3').textContent = data.spot3;
+                document.getElementById('spot-3-desc').innerHTML = data.spot3Desc;
+                document.getElementById('spot-4').textContent = data.spot4;
+                document.getElementById('spot-4-desc').innerHTML = data.spot4Desc;
+                document.getElementById('spot-5').textContent = data.spot5;
+                document.getElementById('spot-5-desc').innerHTML = data.spot5Desc;
+                document.getElementById('spot-6').textContent = data.spot6;
+                document.getElementById('spot-6-desc').innerHTML = data.spot6Desc;
+                document.getElementById('spot-7').textContent = data.spot7;
+                document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
+                
+                // Summary
+                document.getElementById('summary-title').textContent = data.summaryTitle;
+                document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
+                document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
+                document.getElementById('summary-price-label').textContent = data.summaryPriceLabel;
+                document.getElementById('summary-price-value').textContent = data.summaryPriceValue;
+                document.getElementById('summary-access-label').textContent = data.summaryAccessLabel;
+                document.getElementById('summary-access-value').textContent = data.summaryAccessValue;
+                document.getElementById('summary-facilities-label').textContent = data.summaryFacilitiesLabel;
+                document.getElementById('summary-facilities-value').textContent = data.summaryFacilitiesValue;
+                document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
+                document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
+                
+                // Tips
+                document.getElementById('tips-title').textContent = data.tipsTitle;
+                document.getElementById('tip-1').textContent = data.tip1;
+                document.getElementById('tip-2').textContent = data.tip2;
+                document.getElementById('tip-3').textContent = data.tip3;
+                
+                // Footer
+                document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
+                
+                // Buttons
+                themeToggle.textContent = data.themeBtn;
+                langToggle.textContent = data.langBtn;
+            }
+
+            // Initialize language
+            function initLanguage() {
+                const savedLang = localStorage.getItem('lang') || 'en';
+                applyTranslations(savedLang);
+            }
+            
+            // Toggle language
+            langToggle.addEventListener('click', function() {
+                const currentLang = localStorage.getItem('lang') || 'en';
+                const newLang = currentLang === 'en' ? 'ja' : 'en';
+                
+                applyTranslations(newLang);
+                localStorage.setItem('lang', newLang);
+            });
+            
+            // Initialize everything
+            initTheme();
+            initLanguage();
+            
+            // Service Worker registration for PWA
+            if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('data:application/javascript;charset=utf-8,' + encodeURIComponent(`
+                        self.addEventListener('install', event => {
+                            event.waitUntil(self.skipWaiting());
+                        });
+                        
+                        self.addEventListener('activate', event => {
+                            event.waitUntil(self.clients.claim());
+                        });
+                        
+                        self.addEventListener('fetch', event => {
+                            event.respondWith(
+                                caches.match(event.request).then(response => {
+                                    return response || fetch(event.request);
+                                })
+                            );
+                        });
+                    `));
+                });
+            }
+        });
     </script>
 </body>
 </html>
