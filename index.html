@@ -201,8 +201,41 @@
             text-align: center;
         }
         
+        .bus-info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .bus-info-card {
+            background-color: var(--card-bg);
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+        
+        .bus-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+        
+        .bus-link {
+            display: inline-block;
+            margin-top: 10px;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        
+        .bus-link:hover {
+            text-decoration: underline;
+        }
+        
         @media (max-width: 768px) {
-            .map-grid {
+            .map-grid, .bus-info-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -308,8 +341,20 @@
         <div class="section" id="access">
             <h2 id="transportation-title">Transportation Access</h2>
             <div class="card">
-                <h3 id="by-bus-title">By Bus</h3>
-                <p><strong id="bus-stop-label">"Toguchi" bus stop:</strong> <span id="bus-stop-info">About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).</span></p>
+                <div class="bus-info-grid">
+                    <div class="bus-info-card">
+                        <h3 id="local-bus-title">Local Buses (65, 66, 70, 76)</h3>
+                        <p id="local-bus-info">Stops at "Toguchi" bus stop, about 1 minute walk from the guest house.</p>
+                        <a href="https://www.okinawabus.com/en/" class="bus-link" id="local-bus-link" target="_blank">Okinawa Bus Official Website →</a>
+                        <img src="local_bus_stop.jpg" alt="Toguchi Bus Stop" class="bus-image">
+                    </div>
+                    <div class="bus-info-card">
+                        <h3 id="yanbaru-bus-title">Yanbaru Express Bus (YKB)</h3>
+                        <p id="yanbaru-bus-info">Stops at "Motobu High School Entrance" bus stop, about 5 minutes walk from the guest house.</p>
+                        <a href="https://www.yanbaru-express.com/" class="bus-link" id="yanbaru-bus-link" target="_blank">Yanbaru Express Official Website →</a>
+                        <img src="motobu_high_school.jpg" alt="Motobu High School Entrance" class="bus-image">
+                    </div>
+                </div>
                 
                 <h4 id="timetable-title">Sample Timetable from Naha (YKB)</h4>
                 <table class="timetable">
@@ -345,8 +390,6 @@
                     </tr>
                 </table>
                 
-                <p><strong id="yanbaru-bus-label">Yanbaru Express Bus (YKB):</strong> <span id="yanbaru-bus-info">Stops near Motobu High School or Toguchi Port.</span></p>
-                
                 <h3 id="by-car-title">By Car</h3>
                 <p id="car-info">About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.</p>
             </div>
@@ -356,12 +399,6 @@
             <h2 id="sightseeing-title">Nearby Sightseeing & Convenience Spots</h2>
             <div class="card">
                 <ol id="sightseeing-list">
-                    <li><strong id="spot-1">Motobu Town Market:</strong> <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span></li>
-                    <li><strong id="spot-2">Kishimoto Shokudo:</strong> <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span></li>
-                    <li><strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> <span id="spot-3-desc">About 7-8 minutes by car, also accessible by bus.</span></li>
-                    <li><strong id="spot-4">Motobu Port & Toguchi Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
-                    <li><strong id="spot-5">Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:</strong> <span id="spot-5-desc">Easy day trip destinations by rental car or bus tour.</span></li>
-                    <li><strong id="spot-6">JUNGLIA (activity facility):</strong> <span id="spot-6-desc">Enjoy nature experiences and river activities in Motobu.</span></li>
                     <li><strong id="spot-7">Supermarkets & Convenience Stores:</strong> <span id="spot-7-desc">
                         <ul>
                             <li>スーパーサンエー: 10min (750m)</li>
@@ -369,6 +406,21 @@
                             <li>スーパーザ・ビッグ: 25min (1.8km)</li>
                             <li>セブンイレブン: 25min (1.8km)</li>
                             <li>ローソン: 20min (1.5km)</li>
+                        </ul>
+                        <div class="map-container">
+                            <img src="supermarket_map.jpg" alt="Supermarket Locations" class="header-image">
+                        </div>
+                    </span></li>
+                    <li><strong id="spot-1">Motobu Town Market:</strong> <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span></li>
+                    <li><strong id="spot-2">Kishimoto Shokudo:</strong> <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span></li>
+                    <li><strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> <span id="spot-3-desc">About 7-8 minutes by car, also accessible by bus.</span></li>
+                    <li><strong id="spot-4">Motobu Port & Toguchi Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
+                    <li><strong id="spot-5">Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:</strong> <span id="spot-5-desc">Easy day trip destinations by rental car or bus tour.</span></li>
+                    <li><strong id="spot-6">JUNGLIA (activity facility):</strong> <span id="spot-6-desc">Enjoy nature experiences and river activities in Motobu.</span></li>
+                    <li><strong id="spot-8">Bus Access Information:</strong> <span id="spot-8-desc">
+                        <ul>
+                            <li><a href="https://www.okinawabus.com/en/" target="_blank">Okinawa Bus Official Website</a></li>
+                            <li><a href="https://www.yanbaru-express.com/" target="_blank">Yanbaru Express Official Website</a></li>
                         </ul>
                     </span></li>
                 </ol>
@@ -485,10 +537,13 @@
                     parkingLabel: "Parking:",
                     parkingInfo: "Free parking space within 1 minute walk",
                     transportationTitle: "Transportation Access",
-                    byBusTitle: "By Bus",
-                    busStopLabel: "\"Toguchi\" bus stop:",
-                    busStopInfo: "About 1 minute walk. Served by Okinawa Bus routes 65, 66, 70, and 76 (convenient direct buses from Naha without transfers). Also accessible by Yanbaru Express Bus (YKB).",
-                    timetableTitle: "Sample Timetable from Naha (Route 65)",
+                    localBusTitle: "Local Buses (65, 66, 70, 76)",
+                    localBusInfo: "Stops at \"Toguchi\" bus stop, about 1 minute walk from the guest house.",
+                    localBusLink: "Okinawa Bus Official Website →",
+                    yanbaruBusTitle: "Yanbaru Express Bus (YKB)",
+                    yanbaruBusInfo: "Stops at \"Motobu High School Entrance\" bus stop, about 5 minutes walk from the guest house.",
+                    yanbaruBusLink: "Yanbaru Express Official Website →",
+                    timetableTitle: "Sample Timetable from Naha (YKB)",
                     departureLabel: "Departure (Naha)",
                     arrivalLabel: "Arrival (Toguchi)",
                     frequencyLabel: "Frequency",
@@ -497,8 +552,6 @@
                     frequency3: "Every 30-60 min",
                     frequency4: "Every 30-60 min",
                     frequency5: "Every 30-60 min",
-                    yanbaruBusLabel: "Yanbaru Express Bus (YKB):",
-                    yanbaruBusInfo: "Stops near Motobu High School or Toguchi Port.",
                     byCarTitle: "By Car",
                     carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
                     sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
@@ -516,6 +569,8 @@
                     spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
                     spot7: "Supermarkets & Convenience Stores:",
                     spot7Desc: "<ul><li>Supermarket San-A: 10min (750m)</li><li>Supermarket Kanehide: 15min (1.1km)</li><li>Supermarket The Big: 25min (1.8km)</li><li>7-Eleven: 25min (1.8km)</li><li>Lawson: 20min (1.5km)</li></ul>",
+                    spot8: "Bus Access Information:",
+                    spot8Desc: "<ul><li><a href=\"https://www.okinawabus.com/en/\" target=\"_blank\">Okinawa Bus Official Website</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">Yanbaru Express Official Website</a></li></ul>",
                     summaryTitle: "Summary",
                     summaryCategoryLabel: "Category",
                     summaryDetailsLabel: "Details",
@@ -573,9 +628,12 @@
                     parkingLabel: "駐車場:",
                     parkingInfo: "徒歩1分圏内に無料駐車スペースあり",
                     transportationTitle: "交通アクセス",
-                    byBusTitle: "バスで",
-                    busStopLabel: "「渡久地」バス停:",
-                    busStopInfo: "徒歩約1分。沖縄バス65番(名護→渡久地→今帰仁)66番(今帰仁→渡久地→名護)70番(名護↔渡久地↔新里)76番(名護↔渡久地↔瀬底)やんばる急行バス(YKB)でもアクセス可能（那覇からの直行バスに乗り換えなしで便利）",
+                    localBusTitle: "路線バス (65, 66, 70, 76番)",
+                    localBusInfo: "「渡久地」バス停に停車、ゲストハウスから徒歩約1分",
+                    localBusLink: "沖縄バス公式サイト →",
+                    yanbaruBusTitle: "やんばる急行バス(YKB)",
+                    yanbaruBusInfo: "「本部高校入り口」バス停に停車、ゲストハウスから徒歩約5分",
+                    yanbaruBusLink: "やんばる急行公式サイト →",
                     timetableTitle: "那覇からの時刻表 (YKB)",
                     departureLabel: "出発 (那覇)",
                     arrivalLabel: "到着 (渡久地)",
@@ -585,8 +643,6 @@
                     frequency3: "30-60分間隔",
                     frequency4: "30-60分間隔",
                     frequency5: "30-60分間隔",
-                    yanbaruBusLabel: "やんばる急行バス(YKB):",
-                    yanbaruBusInfo: "本部高校前に停車",
                     byCarTitle: "車で",
                     carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
                     sightseeingTitle: "周辺観光＆便利スポット",
@@ -604,6 +660,8 @@
                     spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
                     spot7: "スーパー・コンビニ:",
                     spot7Desc: "<ul><li>サンエー: 徒歩10分 (750m)</li><li>かねひで: 徒歩15分 (1.1km)</li><li>ザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
+                    spot8: "バスアクセス情報:",
+                    spot8Desc: "<ul><li><a href=\"https://www.okinawabus.com/\" target=\"_blank\">沖縄バス公式サイト</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">やんばる急行公式サイト</a></li></ul>",
                     summaryTitle: "まとめ",
                     summaryCategoryLabel: "内容",
                     summaryDetailsLabel: "詳細",
@@ -671,9 +729,12 @@
                 
                 // Transportation
                 document.getElementById('transportation-title').textContent = data.transportationTitle;
-                document.getElementById('by-bus-title').textContent = data.byBusTitle;
-                document.getElementById('bus-stop-label').textContent = data.busStopLabel;
-                document.getElementById('bus-stop-info').textContent = data.busStopInfo;
+                document.getElementById('local-bus-title').textContent = data.localBusTitle;
+                document.getElementById('local-bus-info').textContent = data.localBusInfo;
+                document.getElementById('local-bus-link').textContent = data.localBusLink;
+                document.getElementById('yanbaru-bus-title').textContent = data.yanbaruBusTitle;
+                document.getElementById('yanbaru-bus-info').textContent = data.yanbaruBusInfo;
+                document.getElementById('yanbaru-bus-link').textContent = data.yanbaruBusLink;
                 document.getElementById('timetable-title').textContent = data.timetableTitle;
                 document.getElementById('departure-label').textContent = data.departureLabel;
                 document.getElementById('arrival-label').textContent = data.arrivalLabel;
@@ -683,8 +744,6 @@
                 document.getElementById('frequency-3').textContent = data.frequency3;
                 document.getElementById('frequency-4').textContent = data.frequency4;
                 document.getElementById('frequency-5').textContent = data.frequency5;
-                document.getElementById('yanbaru-bus-label').textContent = data.yanbaruBusLabel;
-                document.getElementById('yanbaru-bus-info').textContent = data.yanbaruBusInfo;
                 document.getElementById('by-car-title').textContent = data.byCarTitle;
                 document.getElementById('car-info').textContent = data.carInfo;
                 
@@ -704,6 +763,8 @@
                 document.getElementById('spot-6-desc').innerHTML = data.spot6Desc;
                 document.getElementById('spot-7').textContent = data.spot7;
                 document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
+                document.getElementById('spot-8').textContent = data.spot8;
+                document.getElementById('spot-8-desc').innerHTML = data.spot8Desc;
                 
                 // Summary
                 document.getElementById('summary-title').textContent = data.summaryTitle;
