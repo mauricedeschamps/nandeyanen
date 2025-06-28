@@ -234,6 +234,14 @@
             text-decoration: underline;
         }
         
+        .spot-image {
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
         @media (max-width: 768px) {
             .map-grid, .bus-info-grid {
                 grid-template-columns: 1fr;
@@ -399,30 +407,74 @@
             <h2 id="sightseeing-title">Nearby Sightseeing & Convenience Spots</h2>
             <div class="card">
                 <ol id="sightseeing-list">
-                    <li><strong id="spot-7">Supermarkets & Convenience Stores:</strong> <span id="spot-7-desc">
-                        <ul>
-                            <li>スーパーサンエー: 10min (750m)</li>
-                            <li>スーパーかねひで: 15min (1.1km)</li>
-                            <li>スーパーザ・ビッグ: 25min (1.8km)</li>
-                            <li>セブンイレブン: 25min (1.8km)</li>
-                            <li>ローソン: 20min (1.5km)</li>
-                        </ul>
+                    <li>
+                        <strong id="spot-1">Motobu Town Market:</strong> 
+                        <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span>
                         <div class="map-container">
-                            <img src="supermarket_map.jpg" alt="Supermarket Locations" class="header-image">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.88000000000001!3d26.650000000000006!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34e50e6e5a6b5a6f%3A0x1234567890abcdef!2z44CSOTA1LTAyMTQg5rKW57iE55yM5YyX5rWc5biC5YyX5Yy65Y2X5LqM77yR5LiB55uu77yR!5e0!3m2!1sen!2sjp!4v1234567890123!5m2!1sen!2sjp" allowfullscreen="" loading="lazy"></iframe>
                         </div>
-                    </span></li>
-                    <li><strong id="spot-1">Motobu Town Market:</strong> <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span></li>
-                    <li><strong id="spot-2">Kishimoto Shokudo:</strong> <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span></li>
-                    <li><strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> <span id="spot-3-desc">About 7-8 minutes by car, also accessible by bus.</span></li>
-                    <li><strong id="spot-4">Motobu Port & Toguchi Port:</strong> <span id="spot-4-desc">Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.</span></li>
-                    <li><strong id="spot-5">Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:</strong> <span id="spot-5-desc">Easy day trip destinations by rental car or bus tour.</span></li>
-                    <li><strong id="spot-6">JUNGLIA (activity facility):</strong> <span id="spot-6-desc">Enjoy nature experiences and river activities in Motobu.</span></li>
-                    <li><strong id="spot-8">Bus Access Information:</strong> <span id="spot-8-desc">
-                        <ul>
-                            <li><a href="https://www.okinawabus.com/en/" target="_blank">Okinawa Bus Official Website</a></li>
-                            <li><a href="https://www.yanbaru-express.com/" target="_blank">Yanbaru Express Official Website</a></li>
-                        </ul>
-                    </span></li>
+                    </li>
+                    <li>
+                        <strong id="spot-2">Kishimoto Shokudo:</strong> 
+                        <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span>
+                    </li>
+                    <li>
+                        <strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> 
+                        <span id="spot-3-desc">About 7-8 minutes by car, accessible by bus #66.</span>
+                        <img src="https://churaumi.okinawa/sp/" alt="Churaumi Aquarium" class="spot-image">
+                    </li>
+                    <li>
+                        <strong id="spot-4">Toguchi Port (10 min walk):</strong> 
+                        <span id="spot-4-desc">Boats to Minnajima Island</span>
+                        <a href="https://www.minna-beach.com/" target="_blank">Minnajima Beach Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-5">Motobu Port (accessible by bus #66):</strong> 
+                        <span id="spot-5-desc">Boats to Iejima Island</span>
+                        <a href="https://www.iejima.org/" target="_blank">Iejima Official Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-6">Sesoko Island (45 min walk or bus):</strong> 
+                        <span id="spot-6-desc">Bridge access to Sesoko Beach and Hilton Sesoko Beach</span>
+                        <a href="https://www.sesokobeach.jp/" target="_blank">Sesoko Beach Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-7">Nakijin Castle Ruins (accessible by bus #66 or Yanbaru Shima Bus):</strong> 
+                        <span id="spot-7-desc">Historic UNESCO World Heritage Site</span>
+                        <a href="https://www.nakijinjoseki-osi.jp/" target="_blank">Nakijin Castle Official Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-8">Kouri Island (accessible by bus or Yanbaru Shima Bus):</strong> 
+                        <span id="spot-8-desc">Popular tourist destination with beautiful beaches</span>
+                        <a href="https://kourijima.info/" target="_blank">Kouri Island Official Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-9">JUNGLIA (activity facility):</strong> 
+                        <span id="spot-9-desc">Nature experiences, spa, and dining</span>
+                        <a href="https://junglia.jp/" target="_blank">JUNGLIA Official Website →</a>
+                    </li>
+                    <li>
+                        <strong id="spot-10">Supermarkets & Convenience Stores:</strong> 
+                        <span id="spot-10-desc">
+                            <ul>
+                                <li>Supermarket San-A: 10min walk (750m)</li>
+                                <li>Supermarket Kanehide: 15min walk (1.1km)</li>
+                                <li>Supermarket The Big: 25min walk (1.8km)</li>
+                                <li>7-Eleven: 25min walk (1.8km)</li>
+                                <li>Lawson: 20min walk (1.5km)</li>
+                            </ul>
+                        </span>
+                        <img src="supermarket_map.jpg" alt="Supermarket Locations" class="spot-image">
+                    </li>
+                    <li>
+                        <strong id="spot-11">Bus Access Information:</strong> 
+                        <span id="spot-11-desc">
+                            <ul>
+                                <li><a href="https://www.okinawabus.com/en/" target="_blank">Okinawa Bus Official Website</a></li>
+                                <li><a href="https://www.yanbaru-express.com/" target="_blank">Yanbaru Express Official Website</a></li>
+                            </ul>
+                        </span>
+                    </li>
                 </ol>
             </div>
         </div>
@@ -560,17 +612,23 @@
                     spot2: "Kishimoto Shokudo:",
                     spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
                     spot3: "Churaumi Aquarium & Ocean Expo Park:",
-                    spot3Desc: "About 7-8 minutes by car, also accessible by bus.",
-                    spot4: "Motobu Port & Toguchi Port:",
-                    spot4Desc: "Both within 5 minutes walk, with boats to nearby islands like Sesoko Island, Minnajima, and Iejima.",
-                    spot5: "Nakijin Castle Ruins, Fukugi Tree Road, Kouri Island:",
-                    spot5Desc: "Easy day trip destinations by rental car or bus tour.",
-                    spot6: "JUNGLIA (activity facility):",
-                    spot6Desc: "Enjoy nature experiences and river activities in Motobu.",
-                    spot7: "Supermarkets & Convenience Stores:",
-                    spot7Desc: "<ul><li>Supermarket San-A: 10min (750m)</li><li>Supermarket Kanehide: 15min (1.1km)</li><li>Supermarket The Big: 25min (1.8km)</li><li>7-Eleven: 25min (1.8km)</li><li>Lawson: 20min (1.5km)</li></ul>",
-                    spot8: "Bus Access Information:",
-                    spot8Desc: "<ul><li><a href=\"https://www.okinawabus.com/en/\" target=\"_blank\">Okinawa Bus Official Website</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">Yanbaru Express Official Website</a></li></ul>",
+                    spot3Desc: "About 7-8 minutes by car, accessible by bus #66.",
+                    spot4: "Toguchi Port (10 min walk):",
+                    spot4Desc: "Boats to Minnajima Island",
+                    spot5: "Motobu Port (accessible by bus #66):",
+                    spot5Desc: "Boats to Iejima Island",
+                    spot6: "Sesoko Island (45 min walk or bus):",
+                    spot6Desc: "Bridge access to Sesoko Beach and Hilton Sesoko Beach",
+                    spot7: "Nakijin Castle Ruins (accessible by bus #66 or Yanbaru Shima Bus):",
+                    spot7Desc: "Historic UNESCO World Heritage Site",
+                    spot8: "Kouri Island (accessible by bus or Yanbaru Shima Bus):",
+                    spot8Desc: "Popular tourist destination with beautiful beaches",
+                    spot9: "JUNGLIA (activity facility):",
+                    spot9Desc: "Nature experiences, spa, and dining",
+                    spot10: "Supermarkets & Convenience Stores:",
+                    spot10Desc: "<ul><li>Supermarket San-A: 10min walk (750m)</li><li>Supermarket Kanehide: 15min walk (1.1km)</li><li>Supermarket The Big: 25min walk (1.8km)</li><li>7-Eleven: 25min walk (1.8km)</li><li>Lawson: 20min walk (1.5km)</li></ul>",
+                    spot11: "Bus Access Information:",
+                    spot11Desc: "<ul><li><a href=\"https://www.okinawabus.com/en/\" target=\"_blank\">Okinawa Bus Official Website</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">Yanbaru Express Official Website</a></li></ul>",
                     summaryTitle: "Summary",
                     summaryCategoryLabel: "Category",
                     summaryDetailsLabel: "Details",
@@ -650,18 +708,24 @@
                     spot1Desc: "ゲストハウス目の前。新鮮魚介やローカルグルメが豊富",
                     spot2: "きしもと食堂:",
                     spot2Desc: "明治38年創業の老舗沖縄そば店で、本部町の名物グルメ",
-                    spot3: "美ら海水族館、海洋博公園 &フクギ並木:",
-                    spot3Desc: "車約7〜8分、バスでもアクセス可能",
-                    spot4: "本部港・渡久地港:",
-                    spot4Desc: "瀬底島(橋で渡れる。)・水納島(渡久地港から)・伊江島(本部港から)など離島への船が出港",
-                    spot5: "今帰仁城跡、フクギ並木、古宇利島:",
-                    spot5Desc: "レンタカーやバスで日帰りで行きやすい観光地",
-                    spot6: "JUNGLIA（アクティビティ施設）:",
-                    spot6Desc: "本部町内で自然体験や川遊びなどが楽しめます",
-                    spot7: "スーパー・コンビニ:",
-                    spot7Desc: "<ul><li>サンエー: 徒歩10分 (750m)</li><li>かねひで: 徒歩15分 (1.1km)</li><li>ザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
-                    spot8: "バスアクセス情報:",
-                    spot8Desc: "<ul><li><a href=\"https://www.okinawabus.com/\" target=\"_blank\">沖縄バス公式サイト</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">やんばる急行公式サイト</a></li></ul>",
+                    spot3: "美ら海水族館、海洋博公園:",
+                    spot3Desc: "車約7〜8分、66番バスでもアクセス可能",
+                    spot4: "渡久地港(徒歩10分):",
+                    spot4Desc: "水納島への船が出港",
+                    spot5: "本部港(66番バス):",
+                    spot5Desc: "伊江島への船が出港",
+                    spot6: "瀬底島(橋を渡ってアンチ浜まで徒歩45分、ヒルトン瀬底ピーチまでバス):",
+                    spot6Desc: "橋で渡れる島",
+                    spot7: "今帰仁城跡(66番バス、バスヤンバル四島線):",
+                    spot7Desc: "世界遺産の城跡",
+                    spot8: "古宇利島(バス、ヤンバル四島線):",
+                    spot8Desc: "人気観光地の島",
+                    spot9: "JUNGLIA（アクティビティ施設）:",
+                    spot9Desc: "鳴り物入りでオープンした今最も熱いテーマパーク。自然体験やスパ、グルメが楽しめます",
+                    spot10: "スーパー・コンビニ:",
+                    spot10Desc: "<ul><li>スーパーサンエー: 徒歩10分 (750m)</li><li>スーパーかねひで: 徒歩15分 (1.1km)</li><li>スーパーザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
+                    spot11: "バスアクセス情報:",
+                    spot11Desc: "<ul><li><a href=\"https://okinawabus.com/wp/\" target=\"_blank\">沖縄バス公式サイト</a></li><li><a href=\"https://yanbaru-expressbus.com/\" target=\"_blank\">やんばる急行公式サイト</a></li></ul>",
                     summaryTitle: "まとめ",
                     summaryCategoryLabel: "内容",
                     summaryDetailsLabel: "詳細",
@@ -765,6 +829,12 @@
                 document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
                 document.getElementById('spot-8').textContent = data.spot8;
                 document.getElementById('spot-8-desc').innerHTML = data.spot8Desc;
+                document.getElementById('spot-9').textContent = data.spot9;
+                document.getElementById('spot-9-desc').innerHTML = data.spot9Desc;
+                document.getElementById('spot-10').textContent = data.spot10;
+                document.getElementById('spot-10-desc').innerHTML = data.spot10Desc;
+                document.getElementById('spot-11').textContent = data.spot11;
+                document.getElementById('spot-11-desc').innerHTML = data.spot11Desc;
                 
                 // Summary
                 document.getElementById('summary-title').textContent = data.summaryTitle;
