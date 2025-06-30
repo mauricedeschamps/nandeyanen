@@ -333,7 +333,7 @@
         <header>
             <div class="header-controls">
                 <button id="themeToggle" class="btn theme-btn">Light Mode</button>
-                <button id="langToggle" class="btn lang-btn">日本語</button>
+                <button id="langToggle" class="btn lang-btn">English</button>
             </div>
             
             <img src="https://pbs.twimg.com/media/GpSfbNTbYAAS45x.jpg" alt="Guest House Nandeyanen" class="header-image">
@@ -505,10 +505,10 @@
                     <div id="islands" class="spot-detail" style="display:none;">
                         <h3 id="islands-title">Island Access</h3>
                         <div class="btn-group">
-                            <button class="btn nav-btn" data-island="minnajima">Minnajima</button>
-                            <button class="btn nav-btn" data-island="iejima">Iejima</button>
-                            <button class="btn nav-btn" data-island="sesoko">Sesoko Island</button>
-                            <button class="btn nav-btn" data-island="kouri">Kouri Island</button>
+                            <button class="btn nav-btn" data-island="minnajima">Minnajima Island</button>
+                            <button class="btn nav-btn" data-island="iejima">Iejima Island</button>
+                            <button class="btn nav-btn" data-island="sesoko">Sesokojima Island</button>
+                            <button class="btn nav-btn" data-island="kouri">Kourijima Island</button>
                         </div>
                         
                         <div id="minnajima" class="island-info">
@@ -524,13 +524,13 @@
                         </div>
                         
                         <div id="sesoko" class="island-info" style="display:none;">
-                            <h4 id="spot-6">Sesoko Island (45 min walk or bus)</h4>
+                            <h4 id="spot-6">Sesokojima Island (45 min walk or bus)</h4>
                             <p id="spot-6-desc">Bridge access to Sesoko Beach and Hilton Sesoko Beach</p>
                             <a href="https://www.sesokobeach.jp/" target="_blank" class="btn nav-btn" id="sesoko-link">Visit Website</a>
                         </div>
                         
                         <div id="kouri" class="island-info" style="display:none;">
-                            <h4 id="spot-7">Kouri Island</h4>
+                            <h4 id="spot-7">Kourijima Island</h4>
                             <p id="spot-7-desc">Popular tourist destination with beautiful beaches</p>
                             <a href="https://kourijima.info/" target="_blank" class="btn nav-btn" id="kouri-link">Visit Website</a>
                         </div>
@@ -607,7 +607,6 @@
         <footer>
             <p id="contact-text">Contact us<br>
             <a href="mailto:mementomorikatsu@gmail.com" class="contact-link" id="contact-email">mementomorikatsu@gmail.com</a></p>
-            <p id="phone-contact">Phone: 090-6000-2112</p>
         </footer>
     </div>
 
@@ -782,9 +781,9 @@
                     spot4Desc: "Boats to Minnajima Island",
                     spot5: "Motobu Port (accessible by bus #66)",
                     spot5Desc: "Boats to Iejima Island",
-                    spot6: "Sesoko Island (45 min walk or bus)",
+                    spot6: "Sesokojima Island (45 min walk or bus)",
                     spot6Desc: "Bridge access to Sesoko Beach and Hilton Sesoko Beach",
-                    spot7: "Kouri Island",
+                    spot7: "Kourijima Island",
                     spot7Desc: "Popular tourist destination with beautiful beaches",
                     spot8: "Nakijin Castle Ruins",
                     spot8Desc: "Historic UNESCO World Heritage Site, accessible by bus #66 or Yanbaru Shima Bus",
@@ -806,11 +805,10 @@
                     summarySurroundingsValue: "Market, food, Motobu Port, Churaumi Aquarium, easy island access",
                     tipsTitle: "Tips",
                     tip1: "Great for solo travelers and those who value social interaction: The shared \"Yuntaku Room\" naturally facilitates conversation with other guests (\"yuntaku\" means chatting in Okinawan dialect).",
-                    tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
+                    tip2: "Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesokojima Island, Minnajima Island, Iejima Island) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.",
                     tip3: "Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.",
                     contactText: "Contact us",
                     contactEmail: "mementomorikatsu@gmail.com",
-                    phoneContact: "Phone: 090-6000-2112",
                     themeBtn: "Light Mode",
                     langBtn: "日本語",
                     navBasic: "Basic Info",
@@ -824,10 +822,10 @@
                     navIslands: "Islands",
                     navAttractions: "Attractions",
                     navSupermarkets: "Supermarkets",
-                    navMinnajima: "Minnajima",
-                    navIejima: "Iejima",
-                    navSesoko: "Sesoko Island",
-                    navKouri: "Kouri Island",
+                    navMinnajima: "Minnajima Island",
+                    navIejima: "Iejima Island",
+                    navSesoko: "Sesokojima Island",
+                    navKouri: "Kourijima Island",
                     navNakijin: "Nakijin Castle",
                     navJunglia: "JUNGLIA",
                     aquariumLink: "Visit Website",
@@ -930,7 +928,6 @@
                     tip3: "自炊派にもおすすめ：市場やスーパーが近く、自炊道具・キッチンも充実。地元食材を楽しめます",
                     contactText: "連絡先",
                     contactEmail: "mementomorikatsu@gmail.com",
-                    phoneContact: "電話: 090-6000-2112",
                     themeBtn: "ライトモード",
                     langBtn: "English",
                     navBasic: "基本情報",
@@ -1048,7 +1045,6 @@
                 document.getElementById('attractions-title').textContent = data.attractionsTitle;
                 
                 // Summary
-                document.getElementById('summary-title').textContent = data.summaryTitle;
                 document.getElementById('summary-category-label').textContent = data.summaryCategoryLabel;
                 document.getElementById('summary-details-label').textContent = data.summaryDetailsLabel;
                 document.getElementById('summary-price-label').textContent = data.summaryPriceLabel;
@@ -1066,7 +1062,6 @@
                 
                 // Footer
                 document.getElementById('contact-text').innerHTML = `${data.contactText}<br><a href="mailto:mementomorikatsu@gmail.com" class="contact-link">${data.contactEmail}</a>`;
-                document.getElementById('phone-contact').textContent = data.phoneContact;
                 
                 // Buttons
                 themeToggle.textContent = data.themeBtn;
@@ -1145,6 +1140,8 @@
             function initLanguage() {
                 const savedLang = localStorage.getItem('lang') || 'en';
                 applyTranslations(savedLang);
+                // Update language toggle button text
+                document.getElementById('langToggle').textContent = savedLang === 'en' ? '日本語' : 'English';
             }
             
             // Toggle language
@@ -1154,6 +1151,8 @@
                 
                 applyTranslations(newLang);
                 localStorage.setItem('lang', newLang);
+                // Update language toggle button text
+                this.textContent = newLang === 'en' ? '日本語' : 'English';
             });
             
             // Initialize everything
