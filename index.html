@@ -19,6 +19,8 @@
             --secondary-color: #0d47a1;
             --card-bg: #1e1e1e;
             --border-color: #333;
+            --button-bg: #2a2a2a;
+            --button-hover: #3a3a3a;
         }
         
         [data-theme="light"] {
@@ -28,6 +30,8 @@
             --secondary-color: #0d47a1;
             --card-bg: #f5f5f5;
             --border-color: #ddd;
+            --button-bg: #e0e0e0;
+            --button-hover: #d0d0d0;
         }
         
         body {
@@ -121,6 +125,9 @@
             cursor: pointer;
             font-weight: bold;
             transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
         }
         
         .theme-btn {
@@ -133,9 +140,42 @@
             color: white;
         }
         
+        .nav-btn {
+            background-color: var(--button-bg);
+            color: var(--text-color);
+            margin: 5px;
+            min-width: 120px;
+        }
+        
+        .nav-btn:hover {
+            background-color: var(--button-hover);
+            transform: translateY(-2px);
+        }
+        
         .btn:hover {
             opacity: 0.9;
             transform: translateY(-2px);
+        }
+        
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 15px 0;
+        }
+        
+        .content-section {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        .content-section.active {
+            display: block;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         footer {
@@ -262,6 +302,16 @@
             .header-controls {
                 justify-content: center;
             }
+            
+            .btn-group {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 90%;
+                margin: 5px 0;
+            }
         }
     </style>
 </head>
@@ -278,43 +328,43 @@
             <h1 id="main-title">Guest House<br>Nandeyanen</h1>
             <p id="address">4-7 Toguchi Motobu Kunigami Okinawa 〒905-0214</p>
             
-            <div class="map-grid">
-                <div>
-                    <h3 id="location-map-title">Location Map</h3>
-                    <div class="map-container">
-                       
-<!-- Updated Google Maps embed with centered location -->
-
-<!-- Google Maps embed centered at 26.6605566, 127.8952937 -->
-<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.8952937!3d26.6605566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDM5JzM4LjAiTiAxMjfCsDUzJzQzLjAiRQ!5e0!3m2!1sen!2sjp!4v1620000000000!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
-
-                    </div>
-                </div>
-                <div>
-                    <h3 id="bus-stop-map-title">From Toguchi Bus Stop</h3>
-                    <div class="map-container">
-                        <!-- Bus stop route map -->
-                        <img src="IMG_20250621_081448.png" alt="Guest House Nandeyanen" class="header-image">
-                    </div>
-                    <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
-                </div>
+            <div class="btn-group">
+                <button class="btn nav-btn" data-section="basic-info">Basic Info</button>
+                <button class="btn nav-btn" data-section="facilities">Facilities</button>
+                <button class="btn nav-btn" data-section="access">Access</button>
+                <button class="btn nav-btn" data-section="sightseeing">Sightseeing</button>
+                <button class="btn nav-btn" data-section="summary">Summary</button>
             </div>
         </header>
 
-        <div class="section" id="basicInfo">
-            <h2 id="basic-info-title">Basic Information</h2>
+        <!-- Basic Info Section -->
+        <div class="content-section" id="basic-info">
             <div class="card">
+                <div class="map-grid">
+                    <div>
+                        <h3 id="location-map-title">Location Map</h3>
+                        <div class="map-container">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3578.456789012345!2d127.8952937!3d26.6605566!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDM5JzM4LjAiTiAxMjfCsDUzJzQzLjAiRQ!5e0!3m2!1sen!2sjp!4v1620000000000!5m2!1sen!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 id="bus-stop-map-title">From Toguchi Bus Stop</h3>
+                        <div class="map-container">
+                            <img src="IMG_20250621_081448.png" alt="Guest House Nandeyanen" class="header-image">
+                        </div>
+                        <div class="walking-route" id="walking-time">1 minute walk (80m)</div>
+                    </div>
+                </div>
+                
                 <p><strong id="official-name-label">Official Name:</strong> <span id="official-name">Guest House Nandeyanen</span></p>
-                <p><strong id="location-label">Location:</strong> <span id="location-text"> 
-             4-7 Toguchi
-             Motobu
-             Kunigami
-             Okinawa
-             〒905-0214   
-           </span></p>
                 <p><strong id="phone-label">Phone:</strong> <span id="phone-number">090-6000-2112</span></p>
                 <p><strong id="checkin-label">Check-in:</strong> <span id="checkin-time">15:00 (until 22:00)</span> / <strong id="checkout-label">Check-out:</strong> <span id="checkout-time">12:00</span></p>
-                
+            </div>
+        </div>
+
+        <!-- Facilities Section -->
+        <div class="content-section" id="facilities">
+            <div class="card">
                 <h3 id="accommodation-title">Accommodation & Prices</h3>
                 <table class="price-table">
                     <tr>
@@ -350,8 +400,8 @@
             </div>
         </div>
         
-        <div class="section" id="access">
-            <h2 id="transportation-title">Transportation Access</h2>
+        <!-- Access Section -->
+        <div class="content-section" id="access">
             <div class="card">
                 <div class="bus-info-grid">
                     <div class="bus-info-card">
@@ -407,83 +457,78 @@
             </div>
         </div>
         
-        <div class="section" id="sightseeing">
-            <h2 id="sightseeing-title">Nearby Sightseeing & Convenience Spots</h2>
+        <!-- Sightseeing Section -->
+        <div class="content-section" id="sightseeing">
             <div class="card">
-                <ol id="sightseeing-list">
-                    <li>
-                        <strong id="spot-1">Motobu Town Market:</strong> 
-                        <span id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</span>
+                <div class="btn-group">
+                    <button class="btn nav-btn" data-spot="market">Market</button>
+                    <button class="btn nav-btn" data-spot="restaurant">Restaurants</button>
+                    <button class="btn nav-btn" data-spot="aquarium">Churaumi Aquarium</button>
+                    <button class="btn nav-btn" data-spot="islands">Islands</button>
+                    <button class="btn nav-btn" data-spot="supermarkets">Supermarkets</button>
+                </div>
+                
+                <div id="spot-content">
+                    <div id="market" class="spot-detail">
+                        <h3 id="spot-1">Motobu Town Market</h3>
+                        <p id="spot-1-desc">Right in front of the guest house. Full of fresh seafood and local food.</p>
+                    </div>
+                    
+                    <div id="restaurant" class="spot-detail" style="display:none;">
+                        <h3 id="spot-2">Kishimoto Shokudo</h3>
+                        <p id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</p>
+                    </div>
+                    
+                    <div id="aquarium" class="spot-detail" style="display:none;">
+                        <h3 id="spot-3">Churaumi Aquarium & Ocean Expo Park</h3>
+                        <p id="spot-3-desc">About 7-8 minutes by car, accessible by bus #66.</p>
+                        <a href="https://churaumi.okinawa/sp/" target="_blank" class="btn nav-btn">Visit Website</a>
+                    </div>
+                    
+                    <div id="islands" class="spot-detail" style="display:none;">
+                        <h3>Island Access</h3>
+                        <div class="btn-group">
+                            <button class="btn nav-btn" data-island="minnajima">Minnajima</button>
+                            <button class="btn nav-btn" data-island="iejima">Iejima</button>
+                            <button class="btn nav-btn" data-island="sesoko">Sesoko</button>
+                        </div>
                         
-                    </li>
-                    <li>
-                        <strong id="spot-2">Kishimoto Shokudo:</strong> 
-                        <span id="spot-2-desc">A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.</span>
-                    </li>
-                    <li>
-                        <strong id="spot-3">Churaumi Aquarium & Ocean Expo Park:</strong> 
-                        <span id="spot-3-desc">About 7-8 minutes by car, accessible by bus #66.</span>
-                  
- <a href="https://churaumi.okinawa/sp/" target="_blank">Churaumi Aquarium Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-4">Toguchi Port (10 min walk):</strong> 
-                        <span id="spot-4-desc">Boats to Minnajima Island</span>
-                        <a href="https://www.minna-beach.com/" target="_blank">Minnajima Beach Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-5">Motobu Port (accessible by bus #66):</strong> 
-                        <span id="spot-5-desc">Boats to Iejima Island</span>
-                        <a href="https://www.iejima.org/" target="_blank">Iejima Official Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-6">Sesoko Island (45 min walk or bus):</strong> 
-                        <span id="spot-6-desc">Bridge access to Sesoko Beach and Hilton Sesoko Beach</span>
-                        <a href="https://www.sesokobeach.jp/" target="_blank">Sesoko Beach Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-7">Nakijin Castle Ruins (accessible by bus #66 or Yanbaru Shima Bus):</strong> 
-                        <span id="spot-7-desc">Historic UNESCO World Heritage Site</span>
-                        <a href="https://www.nakijinjoseki-osi.jp/" target="_blank">Nakijin Castle Official Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-8">Kouri Island (accessible by bus or Yanbaru Shima Bus):</strong> 
-                        <span id="spot-8-desc">Popular tourist destination with beautiful beaches</span>
-                        <a href="https://kourijima.info/" target="_blank">Kouri Island Official Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-9">JUNGLIA (activity facility):</strong> 
-                        <span id="spot-9-desc">Nature experiences, spa, and dining</span>
-                        <a href="https://junglia.jp/" target="_blank">JUNGLIA Official Website →</a>
-                    </li>
-                    <li>
-                        <strong id="spot-10">Supermarkets & Convenience Stores:</strong> 
-                        <span id="spot-10-desc">
-                            <ul>
-                                <li>Supermarket San-A: 10min walk (750m)</li>
-                                <li>Supermarket Kanehide: 15min walk (1.1km)</li>
-                                <li>Supermarket The Big: 25min walk (1.8km)</li>
-                                <li>7-Eleven: 25min walk (1.8km)</li>
-                                <li>Lawson: 20min walk (1.5km)</li>
-                            </ul>
-                        </span>
+                        <div id="minnajima" class="island-info">
+                            <h4 id="spot-4">Toguchi Port (10 min walk)</h4>
+                            <p id="spot-4-desc">Boats to Minnajima Island</p>
+                            <a href="https://www.minna-beach.com/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                        
+                        <div id="iejima" class="island-info" style="display:none;">
+                            <h4 id="spot-5">Motobu Port (accessible by bus #66)</h4>
+                            <p id="spot-5-desc">Boats to Iejima Island</p>
+                            <a href="https://www.iejima.org/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                        
+                        <div id="sesoko" class="island-info" style="display:none;">
+                            <h4 id="spot-6">Sesoko Island (45 min walk or bus)</h4>
+                            <p id="spot-6-desc">Bridge access to Sesoko Beach and Hilton Sesoko Beach</p>
+                            <a href="https://www.sesokobeach.jp/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                    </div>
+                    
+                    <div id="supermarkets" class="spot-detail" style="display:none;">
+                        <h3 id="spot-10">Supermarkets & Convenience Stores</h3>
+                        <ul>
+                            <li>Supermarket San-A: 10min walk (750m)</li>
+                            <li>Supermarket Kanehide: 15min walk (1.1km)</li>
+                            <li>Supermarket The Big: 25min walk (1.8km)</li>
+                            <li>7-Eleven: 25min walk (1.8km)</li>
+                            <li>Lawson: 20min walk (1.5km)</li>
+                        </ul>
                         <img src="IMG_20250628_223113.png" alt="Supermarket Locations" class="spot-image">
-                    </li>
-                    <li>
-                        <strong id="spot-11">Bus Access Information:</strong> 
-                        <span id="spot-11-desc">
-                            <ul>
-                                <li><a href="https://www.okinawabus.com/en/" target="_blank">Okinawa Bus Official Website</a></li>
-                                <li><a href="https://www.yanbaru-express.com/" target="_blank">Yanbaru Express Official Website</a></li>
-                            </ul>
-                        </span>
-                    </li>
-                </ol>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="section" id="summary">
-            <h2 id="summary-title">Summary</h2>
+        <!-- Summary Section -->
+        <div class="content-section" id="summary">
             <div class="card">
                 <table class="price-table">
                     <tr>
@@ -507,12 +552,8 @@
                         <td id="summary-surroundings-value">Market, food, Motobu Port, Churaumi Aquarium, easy island access</td>
                     </tr>
                 </table>
-            </div>
-        </div>
-        
-        <div class="section" id="tips">
-            <h2 id="tips-title">Tips</h2>
-            <div class="card">
+                
+                <h3 id="tips-title">Tips</h3>
                 <p id="tip-1">Great for solo travelers and those who value social interaction: The shared "Yuntaku Room" naturally facilitates conversation with other guests ("yuntaku" means chatting in Okinawan dialect).</p>
                 <p id="tip-2">Suggested itinerary: Stay in the dormitory for several nights + island hopping (Sesoko Island, Minnajima, Iejima) + Churaumi Aquarium & Nakijin Castle - enjoy all that Motobu has to offer.</p>
                 <p id="tip-3">Recommended for self-caterers: Market and supermarkets nearby, with well-equipped kitchen tools. Enjoy local ingredients.</p>
@@ -553,6 +594,65 @@
                 updateThemeButton(newTheme);
             });
             
+            // Navigation functionality
+            const navButtons = document.querySelectorAll('.nav-btn[data-section]');
+            const contentSections = document.querySelectorAll('.content-section');
+            
+            // Show first section by default
+            if (contentSections.length > 0) {
+                contentSections[0].classList.add('active');
+            }
+            
+            navButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const sectionId = this.getAttribute('data-section');
+                    
+                    // Hide all sections
+                    contentSections.forEach(section => {
+                        section.classList.remove('active');
+                    });
+                    
+                    // Show selected section
+                    document.getElementById(sectionId).classList.add('active');
+                });
+            });
+            
+            // Spot navigation
+            const spotButtons = document.querySelectorAll('.nav-btn[data-spot]');
+            const spotDetails = document.querySelectorAll('.spot-detail');
+            
+            spotButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const spotId = this.getAttribute('data-spot');
+                    
+                    // Hide all spot details
+                    spotDetails.forEach(detail => {
+                        detail.style.display = 'none';
+                    });
+                    
+                    // Show selected spot
+                    document.getElementById(spotId).style.display = 'block';
+                });
+            });
+            
+            // Island navigation
+            const islandButtons = document.querySelectorAll('.nav-btn[data-island]');
+            const islandInfos = document.querySelectorAll('.island-info');
+            
+            islandButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const islandId = this.getAttribute('data-island');
+                    
+                    // Hide all island infos
+                    islandInfos.forEach(info => {
+                        info.style.display = 'none';
+                    });
+                    
+                    // Show selected island
+                    document.getElementById(islandId).style.display = 'block';
+                });
+            });
+            
             // Language content
             const content = {
                 en: {
@@ -561,11 +661,8 @@
                     locationMapTitle: "Location Map",
                     busStopMapTitle: "From Toguchi Bus Stop",
                     walkingTime: "1 minute walk (80m)",
-                    basicInfoTitle: "Basic Information",
                     officialNameLabel: "Official Name:",
                     officialName: "Guest House Nandeyanen",
-                    locationLabel: "Location:",
-                    locationText: "4-7 Toguchi Motobu Kunigami Okinawa 〒905-0214",
                     phoneLabel: "Phone:",
                     phoneNumber: "090-6000-2112",
                     checkinLabel: "Check-in:",
@@ -609,29 +706,19 @@
                     frequency5: "Every 30-60 min",
                     byCarTitle: "By Car",
                     carInfo: "About 7-8 minutes to Churaumi Aquarium, 5 minutes to Okinawa Hanasaki Market.",
-                    sightseeingTitle: "Nearby Sightseeing & Convenience Spots",
-                    spot1: "Motobu Town Market:",
+                    spot1: "Motobu Town Market",
                     spot1Desc: "Right in front of the guest house. Full of fresh seafood and local food.",
-                    spot2: "Kishimoto Shokudo:",
+                    spot2: "Kishimoto Shokudo",
                     spot2Desc: "A long-established Okinawa soba restaurant founded in 1905, famous local food of Motobu.",
-                    spot3: "Churaumi Aquarium & Ocean Expo Park:",
+                    spot3: "Churaumi Aquarium & Ocean Expo Park",
                     spot3Desc: "About 7-8 minutes by car, accessible by bus #66.",
-                    spot4: "Toguchi Port (10 min walk):",
+                    spot4: "Toguchi Port (10 min walk)",
                     spot4Desc: "Boats to Minnajima Island",
-                    spot5: "Motobu Port (accessible by bus #66):",
+                    spot5: "Motobu Port (accessible by bus #66)",
                     spot5Desc: "Boats to Iejima Island",
-                    spot6: "Sesoko Island (45 min walk or bus):",
+                    spot6: "Sesoko Island (45 min walk or bus)",
                     spot6Desc: "Bridge access to Sesoko Beach and Hilton Sesoko Beach",
-                    spot7: "Nakijin Castle Ruins (accessible by bus #66 or Yanbaru Shima Bus):",
-                    spot7Desc: "Historic UNESCO World Heritage Site",
-                    spot8: "Kouri Island (accessible by bus or Yanbaru Shima Bus):",
-                    spot8Desc: "Popular tourist destination with beautiful beaches",
-                    spot9: "JUNGLIA (activity facility):",
-                    spot9Desc: "Nature experiences, spa, and dining",
-                    spot10: "Supermarkets & Convenience Stores:",
-                    spot10Desc: "<ul><li>Supermarket San-A: 10min walk (750m)</li><li>Supermarket Kanehide: 15min walk (1.1km)</li><li>Supermarket The Big: 25min walk (1.8km)</li><li>7-Eleven: 25min walk (1.8km)</li><li>Lawson: 20min walk (1.5km)</li></ul>",
-                    spot11: "Bus Access Information:",
-                    spot11Desc: "<ul><li><a href=\"https://www.okinawabus.com/en/\" target=\"_blank\">Okinawa Bus Official Website</a></li><li><a href=\"https://www.yanbaru-express.com/\" target=\"_blank\">Yanbaru Express Official Website</a></li></ul>",
+                    spot10: "Supermarkets & Convenience Stores",
                     summaryTitle: "Summary",
                     summaryCategoryLabel: "Category",
                     summaryDetailsLabel: "Details",
@@ -650,7 +737,17 @@
                     contactText: "Contact me",
                     contactEmail: "mementomorikatsu@gmail.com",
                     themeBtn: "Light Mode",
-                    langBtn: "日本語"
+                    langBtn: "日本語",
+                    navBasic: "Basic Info",
+                    navFacilities: "Facilities",
+                    navAccess: "Access",
+                    navSightseeing: "Sightseeing",
+                    navSummary: "Summary",
+                    navMarket: "Market",
+                    navRestaurant: "Restaurants",
+                    navAquarium: "Churaumi Aquarium",
+                    navIslands: "Islands",
+                    navSupermarkets: "Supermarkets"
                 },
                 ja: {
                     mainTitle: "ゲストハウス<br>なんで家ねん",
@@ -658,11 +755,8 @@
                     locationMapTitle: "所在地マップ",
                     busStopMapTitle: "渡久地バス停から",
                     walkingTime: "徒歩1分 (80m)",
-                    basicInfoTitle: "基本情報",
                     officialNameLabel: "正式名称:",
                     officialName: "ゲストハウス なんで家ねん",
-                    locationLabel: "所在地:",
-                    locationText: "〒905-0214沖縄県国頭郡本部町渡久地4-7",
                     phoneLabel: "電話番号:",
                     phoneNumber: "090-6000-2112",
                     checkinLabel: "チェックイン:",
@@ -706,29 +800,19 @@
                     frequency5: "30-60分間隔",
                     byCarTitle: "車で",
                     carInfo: "美ら海水族館まで約7〜8分、オキナワハナサキマルシェまで5分",
-                    sightseeingTitle: "周辺観光＆便利スポット",
-                    spot1: "本部町営市場:",
+                    spot1: "本部町営市場",
                     spot1Desc: "ゲストハウス目の前。新鮮魚介やローカルグルメが豊富",
-                    spot2: "きしもと食堂:",
+                    spot2: "きしもと食堂",
                     spot2Desc: "明治38年創業の老舗沖縄そば店で、本部町の名物グルメ",
-                    spot3: "美ら海水族館、海洋博公園:",
+                    spot3: "美ら海水族館、海洋博公園",
                     spot3Desc: "車約7〜8分、66番バスでもアクセス可能",
-                    spot4: "渡久地港(徒歩10分):",
+                    spot4: "渡久地港(徒歩10分)",
                     spot4Desc: "水納島への船が出港",
-                    spot5: "本部港(66番バス):",
+                    spot5: "本部港(66番バス)",
                     spot5Desc: "伊江島への船が出港",
-                    spot6: "瀬底島(橋を渡ってアンチ浜まで徒歩45分、ヒルトン瀬底ピーチまでバス):",
+                    spot6: "瀬底島(橋を渡ってアンチ浜まで徒歩45分、ヒルトン瀬底ピーチまでバス)",
                     spot6Desc: "橋で渡れる島",
-                    spot7: "今帰仁城跡(66番バス、バスヤンバル四島線):",
-                    spot7Desc: "世界遺産の城跡",
-                    spot8: "古宇利島(バス、ヤンバル四島線):",
-                    spot8Desc: "人気観光地の島",
-                    spot9: "JUNGLIA（アクティビティ施設）:",
-                    spot9Desc: "鳴り物入りでオープンした今最も熱いテーマパーク。自然体験やスパ、グルメが楽しめます",
-                    spot10: "スーパー・コンビニ:",
-                    spot10Desc: "<ul><li>スーパーサンエー: 徒歩10分 (750m)</li><li>スーパーかねひで: 徒歩15分 (1.1km)</li><li>スーパーザ・ビッグ: 徒歩25分 (1.8km)</li><li>セブンイレブン: 徒歩25分 (1.8km)</li><li>ローソン: 徒歩20分 (1.5km)</li></ul>",
-                    spot11: "バスアクセス情報:",
-                    spot11Desc: "<ul><li><a href=\"https://okinawabus.com/wp/\" target=\"_blank\">沖縄バス公式サイト</a></li><li><a href=\"https://yanbaru-expressbus.com/\" target=\"_blank\">やんばる急行公式サイト</a></li></ul>",
+                    spot10: "スーパー・コンビニ",
                     summaryTitle: "まとめ",
                     summaryCategoryLabel: "内容",
                     summaryDetailsLabel: "詳細",
@@ -747,7 +831,17 @@
                     contactText: "連絡先",
                     contactEmail: "mementomorikatsu@gmail.com",
                     themeBtn: "ライトモード",
-                    langBtn: "English"
+                    langBtn: "English",
+                    navBasic: "基本情報",
+                    navFacilities: "設備",
+                    navAccess: "アクセス",
+                    navSightseeing: "観光",
+                    navSummary: "まとめ",
+                    navMarket: "市場",
+                    navRestaurant: "飲食店",
+                    navAquarium: "美ら海水族館",
+                    navIslands: "離島",
+                    navSupermarkets: "スーパー"
                 }
             };
 
@@ -763,17 +857,16 @@
                 document.getElementById('walking-time').textContent = data.walkingTime;
                 
                 // Basic Info
-                document.getElementById('basic-info-title').textContent = data.basicInfoTitle;
                 document.getElementById('official-name-label').textContent = data.officialNameLabel;
                 document.getElementById('official-name').textContent = data.officialName;
-                document.getElementById('location-label').textContent = data.locationLabel;
-                document.getElementById('location-text').textContent = data.locationText;
                 document.getElementById('phone-label').textContent = data.phoneLabel;
                 document.getElementById('phone-number').textContent = data.phoneNumber;
                 document.getElementById('checkin-label').textContent = data.checkinLabel;
                 document.getElementById('checkin-time').textContent = data.checkinTime;
                 document.getElementById('checkout-label').textContent = data.checkoutLabel;
                 document.getElementById('checkout-time').textContent = data.checkoutTime;
+                
+                // Facilities
                 document.getElementById('accommodation-title').textContent = data.accommodationTitle;
                 document.getElementById('room-type-label').textContent = data.roomTypeLabel;
                 document.getElementById('price-label').textContent = data.priceLabel;
@@ -795,7 +888,6 @@
                 document.getElementById('parking-info').textContent = data.parkingInfo;
                 
                 // Transportation
-                document.getElementById('transportation-title').textContent = data.transportationTitle;
                 document.getElementById('local-bus-title').textContent = data.localBusTitle;
                 document.getElementById('local-bus-info').textContent = data.localBusInfo;
                 document.getElementById('local-bus-link').textContent = data.localBusLink;
@@ -815,29 +907,19 @@
                 document.getElementById('car-info').textContent = data.carInfo;
                 
                 // Sightseeing
-                document.getElementById('sightseeing-title').textContent = data.sightseeingTitle;
                 document.getElementById('spot-1').textContent = data.spot1;
-                document.getElementById('spot-1-desc').innerHTML = data.spot1Desc;
+                document.getElementById('spot-1-desc').textContent = data.spot1Desc;
                 document.getElementById('spot-2').textContent = data.spot2;
-                document.getElementById('spot-2-desc').innerHTML = data.spot2Desc;
+                document.getElementById('spot-2-desc').textContent = data.spot2Desc;
                 document.getElementById('spot-3').textContent = data.spot3;
-                document.getElementById('spot-3-desc').innerHTML = data.spot3Desc;
+                document.getElementById('spot-3-desc').textContent = data.spot3Desc;
                 document.getElementById('spot-4').textContent = data.spot4;
-                document.getElementById('spot-4-desc').innerHTML = data.spot4Desc;
+                document.getElementById('spot-4-desc').textContent = data.spot4Desc;
                 document.getElementById('spot-5').textContent = data.spot5;
-                document.getElementById('spot-5-desc').innerHTML = data.spot5Desc;
+                document.getElementById('spot-5-desc').textContent = data.spot5Desc;
                 document.getElementById('spot-6').textContent = data.spot6;
-                document.getElementById('spot-6-desc').innerHTML = data.spot6Desc;
-                document.getElementById('spot-7').textContent = data.spot7;
-                document.getElementById('spot-7-desc').innerHTML = data.spot7Desc;
-                document.getElementById('spot-8').textContent = data.spot8;
-                document.getElementById('spot-8-desc').innerHTML = data.spot8Desc;
-                document.getElementById('spot-9').textContent = data.spot9;
-                document.getElementById('spot-9-desc').innerHTML = data.spot9Desc;
+                document.getElementById('spot-6-desc').textContent = data.spot6Desc;
                 document.getElementById('spot-10').textContent = data.spot10;
-                document.getElementById('spot-10-desc').innerHTML = data.spot10Desc;
-                document.getElementById('spot-11').textContent = data.spot11;
-                document.getElementById('spot-11-desc').innerHTML = data.spot11Desc;
                 
                 // Summary
                 document.getElementById('summary-title').textContent = data.summaryTitle;
@@ -851,8 +933,6 @@
                 document.getElementById('summary-facilities-value').textContent = data.summaryFacilitiesValue;
                 document.getElementById('summary-surroundings-label').textContent = data.summarySurroundingsLabel;
                 document.getElementById('summary-surroundings-value').textContent = data.summarySurroundingsValue;
-                
-                // Tips
                 document.getElementById('tips-title').textContent = data.tipsTitle;
                 document.getElementById('tip-1').textContent = data.tip1;
                 document.getElementById('tip-2').textContent = data.tip2;
@@ -864,6 +944,40 @@
                 // Buttons
                 themeToggle.textContent = data.themeBtn;
                 langToggle.textContent = data.langBtn;
+                
+                // Navigation buttons
+                document.querySelectorAll('[data-section="basic-info"]').forEach(btn => {
+                    btn.textContent = data.navBasic;
+                });
+                document.querySelectorAll('[data-section="facilities"]').forEach(btn => {
+                    btn.textContent = data.navFacilities;
+                });
+                document.querySelectorAll('[data-section="access"]').forEach(btn => {
+                    btn.textContent = data.navAccess;
+                });
+                document.querySelectorAll('[data-section="sightseeing"]').forEach(btn => {
+                    btn.textContent = data.navSightseeing;
+                });
+                document.querySelectorAll('[data-section="summary"]').forEach(btn => {
+                    btn.textContent = data.navSummary;
+                });
+                
+                // Spot buttons
+                document.querySelectorAll('[data-spot="market"]').forEach(btn => {
+                    btn.textContent = data.navMarket;
+                });
+                document.querySelectorAll('[data-spot="restaurant"]').forEach(btn => {
+                    btn.textContent = data.navRestaurant;
+                });
+                document.querySelectorAll('[data-spot="aquarium"]').forEach(btn => {
+                    btn.textContent = data.navAquarium;
+                });
+                document.querySelectorAll('[data-spot="islands"]').forEach(btn => {
+                    btn.textContent = data.navIslands;
+                });
+                document.querySelectorAll('[data-spot="supermarkets"]').forEach(btn => {
+                    btn.textContent = data.navSupermarkets;
+                });
             }
 
             // Initialize language
