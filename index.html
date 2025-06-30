@@ -412,7 +412,7 @@
                     </div>
                     <div class="bus-info-card">
                         <h3 id="yanbaru-bus-title">Yanbaru Express Bus (YKB)</h3>
-                        <p id="yanbaru-bus-info">Stops at "Motobu High School Entrance" bus stop, about 10 minutes walk from the guest house.</p>
+                        <p id="yanbaru-bus-info">Stops at "Motobu High School Entrance" bus stop, about 5 minutes walk from the guest house.</p>
                         <a href="https://www.yanbaru-express.com/" class="bus-link" id="yanbaru-bus-link" target="_blank">Yanbaru Express Official Website →</a>
                         <img src="IMG_20250627_133257.jpg" alt="Motobu High School Entrance" class="bus-image">
                     </div>
@@ -465,6 +465,7 @@
                     <button class="btn nav-btn" data-spot="restaurant">Restaurants</button>
                     <button class="btn nav-btn" data-spot="aquarium">Churaumi Aquarium</button>
                     <button class="btn nav-btn" data-spot="islands">Islands</button>
+                    <button class="btn nav-btn" data-spot="attractions">Attractions</button>
                     <button class="btn nav-btn" data-spot="supermarkets">Supermarkets</button>
                 </div>
                 
@@ -490,7 +491,8 @@
                         <div class="btn-group">
                             <button class="btn nav-btn" data-island="minnajima">Minnajima</button>
                             <button class="btn nav-btn" data-island="iejima">Iejima</button>
-                            <button class="btn nav-btn" data-island="sesoko">Sesoko</button>
+                            <button class="btn nav-btn" data-island="sesoko">Sesoko Island</button>
+                            <button class="btn nav-btn" data-island="kouri">Kouri Island</button>
                         </div>
                         
                         <div id="minnajima" class="island-info">
@@ -509,6 +511,32 @@
                             <h4 id="spot-6">Sesoko Island (45 min walk or bus)</h4>
                             <p id="spot-6-desc">Bridge access to Sesoko Beach and Hilton Sesoko Beach</p>
                             <a href="https://www.sesokobeach.jp/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                        
+                        <div id="kouri" class="island-info" style="display:none;">
+                            <h4 id="spot-7">Kouri Island</h4>
+                            <p id="spot-7-desc">Popular tourist destination with beautiful beaches</p>
+                            <a href="https://kourijima.info/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                    </div>
+                    
+                    <div id="attractions" class="spot-detail" style="display:none;">
+                        <h3>Other Attractions</h3>
+                        <div class="btn-group">
+                            <button class="btn nav-btn" data-attraction="nakijin">Nakijin Castle</button>
+                            <button class="btn nav-btn" data-attraction="junglia">JUNGLIA</button>
+                        </div>
+                        
+                        <div id="nakijin" class="attraction-info">
+                            <h4 id="spot-8">Nakijin Castle Ruins</h4>
+                            <p id="spot-8-desc">Historic UNESCO World Heritage Site, accessible by bus #66 or Yanbaru Shima Bus</p>
+                            <a href="https://www.nakijinjoseki-osi.jp/" target="_blank" class="btn nav-btn">Visit Website</a>
+                        </div>
+                        
+                        <div id="junglia" class="attraction-info" style="display:none;">
+                            <h4 id="spot-9">JUNGLIA (activity facility)</h4>
+                            <p id="spot-9-desc">Nature experiences, spa, and dining</p>
+                            <a href="https://junglia.jp/" target="_blank" class="btn nav-btn">Visit Website</a>
                         </div>
                     </div>
                     
@@ -653,6 +681,24 @@
                 });
             });
             
+            // Attraction navigation
+            const attractionButtons = document.querySelectorAll('.nav-btn[data-attraction]');
+            const attractionInfos = document.querySelectorAll('.attraction-info');
+            
+            attractionButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const attractionId = this.getAttribute('data-attraction');
+                    
+                    // Hide all attraction infos
+                    attractionInfos.forEach(info => {
+                        info.style.display = 'none';
+                    });
+                    
+                    // Show selected attraction
+                    document.getElementById(attractionId).style.display = 'block';
+                });
+            });
+            
             // Language content
             const content = {
                 en: {
@@ -693,7 +739,7 @@
                     localBusInfo: "Stops at \"Toguchi\" bus stop, about 1 minute walk from the guest house.",
                     localBusLink: "Okinawa Bus Official Website →",
                     yanbaruBusTitle: "Yanbaru Express Bus (YKB)",
-                    yanbaruBusInfo: "Stops at \"Motobu High School Entrance\" bus stop, about 10 minutes walk from the guest house.",
+                    yanbaruBusInfo: "Stops at \"Motobu High School Entrance\" bus stop, about 5 minutes walk from the guest house.",
                     yanbaruBusLink: "Yanbaru Express Official Website →",
                     timetableTitle: "Sample Timetable from Naha (YKB)",
                     departureLabel: "Departure (Naha)",
@@ -718,6 +764,12 @@
                     spot5Desc: "Boats to Iejima Island",
                     spot6: "Sesoko Island (45 min walk or bus)",
                     spot6Desc: "Bridge access to Sesoko Beach and Hilton Sesoko Beach",
+                    spot7: "Kouri Island",
+                    spot7Desc: "Popular tourist destination with beautiful beaches",
+                    spot8: "Nakijin Castle Ruins",
+                    spot8Desc: "Historic UNESCO World Heritage Site, accessible by bus #66 or Yanbaru Shima Bus",
+                    spot9: "JUNGLIA (activity facility)",
+                    spot9Desc: "Nature experiences, spa, and dining",
                     spot10: "Supermarkets & Convenience Stores",
                     summaryTitle: "Summary",
                     summaryCategoryLabel: "Category",
@@ -747,7 +799,14 @@
                     navRestaurant: "Restaurants",
                     navAquarium: "Churaumi Aquarium",
                     navIslands: "Islands",
-                    navSupermarkets: "Supermarkets"
+                    navAttractions: "Attractions",
+                    navSupermarkets: "Supermarkets",
+                    navMinnajima: "Minnajima",
+                    navIejima: "Iejima",
+                    navSesoko: "Sesoko Island",
+                    navKouri: "Kouri Island",
+                    navNakijin: "Nakijin Castle",
+                    navJunglia: "JUNGLIA"
                 },
                 ja: {
                     mainTitle: "ゲストハウス<br>なんで家ねん",
@@ -787,7 +846,7 @@
                     localBusInfo: "「渡久地」バス停に停車、ゲストハウスから徒歩約1分",
                     localBusLink: "沖縄バス公式サイト →",
                     yanbaruBusTitle: "やんばる急行バス(YKB)",
-                    yanbaruBusInfo: "「本部高校入り口」バス停に停車、ゲストハウスから徒歩約10分",
+                    yanbaruBusInfo: "「本部高校入り口」バス停に停車、ゲストハウスから徒歩約5分",
                     yanbaruBusLink: "やんばる急行公式サイト →",
                     timetableTitle: "那覇からの時刻表 (YKB)",
                     departureLabel: "出発 (那覇)",
@@ -812,6 +871,12 @@
                     spot5Desc: "伊江島への船が出港",
                     spot6: "瀬底島(橋を渡ってアンチ浜まで徒歩45分、ヒルトン瀬底ピーチまでバス)",
                     spot6Desc: "橋で渡れる島",
+                    spot7: "古宇利島",
+                    spot7Desc: "人気観光地の島",
+                    spot8: "今帰仁城跡",
+                    spot8Desc: "世界遺産の城跡、66番バスやヤンバル四島線でアクセス可能",
+                    spot9: "JUNGLIA（アクティビティ施設）",
+                    spot9Desc: "鳴り物入りでオープンした今最も熱いテーマパーク。自然体験やスパ、グルメが楽しめます",
                     spot10: "スーパー・コンビニ",
                     summaryTitle: "まとめ",
                     summaryCategoryLabel: "内容",
@@ -841,7 +906,14 @@
                     navRestaurant: "飲食店",
                     navAquarium: "美ら海水族館",
                     navIslands: "離島",
-                    navSupermarkets: "スーパー"
+                    navAttractions: "観光スポット",
+                    navSupermarkets: "スーパー",
+                    navMinnajima: "水納島",
+                    navIejima: "伊江島",
+                    navSesoko: "瀬底島",
+                    navKouri: "古宇利島",
+                    navNakijin: "今帰仁城",
+                    navJunglia: "JUNGLIA"
                 }
             };
 
@@ -919,6 +991,12 @@
                 document.getElementById('spot-5-desc').textContent = data.spot5Desc;
                 document.getElementById('spot-6').textContent = data.spot6;
                 document.getElementById('spot-6-desc').textContent = data.spot6Desc;
+                document.getElementById('spot-7').textContent = data.spot7;
+                document.getElementById('spot-7-desc').textContent = data.spot7Desc;
+                document.getElementById('spot-8').textContent = data.spot8;
+                document.getElementById('spot-8-desc').textContent = data.spot8Desc;
+                document.getElementById('spot-9').textContent = data.spot9;
+                document.getElementById('spot-9-desc').textContent = data.spot9Desc;
                 document.getElementById('spot-10').textContent = data.spot10;
                 
                 // Summary
@@ -975,8 +1053,33 @@
                 document.querySelectorAll('[data-spot="islands"]').forEach(btn => {
                     btn.textContent = data.navIslands;
                 });
+                document.querySelectorAll('[data-spot="attractions"]').forEach(btn => {
+                    btn.textContent = data.navAttractions;
+                });
                 document.querySelectorAll('[data-spot="supermarkets"]').forEach(btn => {
                     btn.textContent = data.navSupermarkets;
+                });
+                
+                // Island buttons
+                document.querySelectorAll('[data-island="minnajima"]').forEach(btn => {
+                    btn.textContent = data.navMinnajima;
+                });
+                document.querySelectorAll('[data-island="iejima"]').forEach(btn => {
+                    btn.textContent = data.navIejima;
+                });
+                document.querySelectorAll('[data-island="sesoko"]').forEach(btn => {
+                    btn.textContent = data.navSesoko;
+                });
+                document.querySelectorAll('[data-island="kouri"]').forEach(btn => {
+                    btn.textContent = data.navKouri;
+                });
+                
+                // Attraction buttons
+                document.querySelectorAll('[data-attraction="nakijin"]').forEach(btn => {
+                    btn.textContent = data.navNakijin;
+                });
+                document.querySelectorAll('[data-attraction="junglia"]').forEach(btn => {
+                    btn.textContent = data.navJunglia;
                 });
             }
 
