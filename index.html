@@ -250,7 +250,7 @@
         
         .bus-info-card {
             background-color: var(--card-bg);
-            padding: 15px;
+            padding: 20px;
             border-radius: 8px;
             border: 1px solid var(--border-color);
         }
@@ -289,6 +289,14 @@
             margin-top: 10px;
         }
         
+        /* 言語切り替え用スタイル */
+        [lang="ja"] { display: none; }
+        body[data-lang="ja"] [lang="ja"] { display: inline; }
+        body[data-lang="ja"] [lang="en"] { display: none; }
+        
+        body[data-lang="en"] [lang="en"] { display: inline; }
+        body[data-lang="en"] [lang="ja"] { display: none; }
+        
         @media (max-width: 768px) {
             .map-grid, .bus-info-grid {
                 grid-template-columns: 1fr;
@@ -323,6 +331,10 @@
             .contact-info {
                 flex-direction: column;
                 gap: 5px;
+            }
+            
+            .bus-image, .spot-image {
+                max-height: 250px;
             }
         }
     </style>
@@ -559,11 +571,31 @@
                     <div id="supermarkets" class="spot-detail" style="display:none;">
                         <h3 id="spot-10">Supermarkets & Convenience Stores</h3>
                         <ul id="supermarket-list">
-                            <li>Supermarket San-A: 10min walk (750m)</li>
-                            <li>Supermarket Kanehide: 15min walk (1.1km)</li>
-                            <li>Supermarket The Big: 25min walk (1.8km)</li>
-                            <li>7-Eleven: 25min walk (1.8km)</li>
-                            <li>Lawson: 20min walk (1.5km)</li>
+                            <li>
+                                <span lang="en">Supermarket San-A</span>
+                                <span lang="ja">サンエー</span>
+                                : <span lang="en">10min walk (750m)</span><span lang="ja">徒歩10分 (750m)</span>
+                            </li>
+                            <li>
+                                <span lang="en">Supermarket Kanehide</span>
+                                <span lang="ja">カネヒデ</span>
+                                : <span lang="en">15min walk (1.1km)</span><span lang="ja">徒歩15分 (1.1km)</span>
+                            </li>
+                            <li>
+                                <span lang="en">Supermarket The Big</span>
+                                <span lang="ja">ザ・ビッグ</span>
+                                : <span lang="en">25min walk (1.8km)</span><span lang="ja">徒歩25分 (1.8km)</span>
+                            </li>
+                            <li>
+                                <span lang="en">7-Eleven</span>
+                                <span lang="ja">セブンイレブン</span>
+                                : <span lang="en">25min walk (1.8km)</span><span lang="ja">徒歩25分 (1.8km)</span>
+                            </li>
+                            <li>
+                                <span lang="en">Lawson</span>
+                                <span lang="ja">ローソン</span>
+                                : <span lang="en">20min walk (1.5km)</span><span lang="ja">徒歩20分 (1.5km)</span>
+                            </li>
                         </ul>
                         <img src="IMG_20250628_223113.png" alt="Supermarket Locations" class="spot-image">
                     </div>
@@ -1134,6 +1166,9 @@
                 document.getElementById('kouri-link').textContent = data.kouriLink;
                 document.getElementById('nakijin-link').textContent = data.nakijinLink;
                 document.getElementById('junglia-link').textContent = data.jungliaLink;
+                
+                // bodyにdata-lang属性を追加
+                document.body.setAttribute('data-lang', lang);
             }
 
             // Initialize language
